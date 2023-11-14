@@ -56,9 +56,6 @@ void appendData(const string& filename, const CsvRow& newRow) {
 int main() {
     string filename = "database.csv";
     vector<CsvRow> csvData = readCsv(filename);
-
-    // Example of appending a new data line
-    CsvRow newData = {"New", "Data", "Line", "HI", "Here with spaces"};
     appendData(filename, newData);
 
     // Read and print the updated data
