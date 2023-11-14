@@ -57,13 +57,8 @@ int main() {
     string filename = "database.csv";
     vector<CsvRow> csvData = readCsv(filename);
 
-    // Do something with the data, for example, print it
-    for (const auto& row : csvData) {
-        cout << row.col1 << ", " << row.col2 << ", " << row.col3 << ", " << row.col4 << ", " << row.col5 << endl;
-    }
-
     // Example of appending a new data line
-    CsvRow newData = {"New", "Data", "Line", "Added", "Here with spaces"};
+    CsvRow newData = {"New", "Data", "Line", "HI", "Here with spaces"};
     appendData(filename, newData);
 
     // Read and print the updated data
