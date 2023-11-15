@@ -5,6 +5,7 @@
 #include <string>
 #include "registration.cpp"
 #include "API.h"
+#include "login.h"
 #pragma once
 
 using namespace std;
@@ -65,6 +66,15 @@ void registrationProcess()
     CsvRow newData = {ptr[0], ptr[1], ptr[2], ptr[3], ptr[4], ptr[5], ptr[6]};
     // appendData(filename, newData);
     appendData(filename, newData);
+    cout << "\n" << "Your Details " << "\n";
+    cout << "First Name : " << ptr[0] << "\n";
+    cout << "Last Name : " << ptr[1] << "\n";
+    cout << "Birthday : " << ptr[2] << "\n";
+    cout << "Address : " << ptr[3] << "\n";
+    cout << "ID Number : " << ptr[4] << "\n";
+    cout << "Username : " << ptr[5] << "\n" << "_________________________________" << "\n";
+    cout << "Login your account from here\n";
+    loginPage();
 
 }
 

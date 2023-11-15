@@ -40,7 +40,7 @@ std::string * registration()
             std::cin >> confirm_p;
         }
 
-        std::cout << "Signup successful! Thank you for joining the Banking App." << std::endl;
+        std::cout << "\n" << "Signup successful! Thank you for joining the Banking App." << std::endl;
 
     return person;
 }
