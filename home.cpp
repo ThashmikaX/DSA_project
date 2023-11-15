@@ -1,4 +1,6 @@
 #include "home.h"
+#include "login.h" 
+#include "login.cpp" 
 #include <iostream>
 #include <limits> // for numeric_limits
 
@@ -20,7 +22,7 @@ void home() {
 
         }
         else if(x==2){
-            cout<< "Log-in\n";
+             loginPage();
             break;
         }
         else if(x==3){
