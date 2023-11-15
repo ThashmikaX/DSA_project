@@ -1,3 +1,4 @@
+#include "login.h" 
 #include <iostream>
 #include <limits> // for numeric_limits
 #include <string> // for string
@@ -29,10 +30,4 @@ void loginPage() {
             // Add logic for unsuccessful login
         }
     } while (!loggedIn);
-}
-
-int main() {
-    loginPage();
-
-    return 0;
 }
