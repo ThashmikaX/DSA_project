@@ -3,12 +3,13 @@
 #include <sstream>
 #include <vector>
 #include <string>
-
+#include "registration.cpp"
 
 using namespace std;
 
+
 struct CsvRow {
-    string col1, col2, col3, col4, col5;
+    string F_name, L_name, birth, address, id, password;
 };
 
 vector<CsvRow> readCsv(const string& filename) {
@@ -26,11 +27,12 @@ vector<CsvRow> readCsv(const string& filename) {
         CsvRow row;
 
         // Split the line into columns based on commas
-        getline(iss, row.col1, ',');
-        getline(iss, row.col2, ',');
-        getline(iss, row.col3, ',');
-        getline(iss, row.col4, ',');
-        getline(iss, row.col5);
+        getline(iss, row.F_name, ',');
+        getline(iss, row.L_name, ',');
+        getline(iss, row.birth, ',');
+        getline(iss, row.address, ',');
+        getline(iss, row.id, ',');
+        getline(iss, row.password);
 
         data.push_back(row);
     }
@@ -48,15 +50,17 @@ void appendData(const string& filename, const CsvRow& newRow) {
     }
 
     // Append the new data line with comma separation
-    file << newRow.col1 << "," << newRow.col2 << "," << newRow.col3 << "," << newRow.col4 << "," << newRow.col5 << "\n";
+    file << newRow.F_name << "," << newRow.L_name << "," << newRow.birth << "," << newRow.address << "," << newRow.id << "," << newRow.password << "\n";
 
     file.close();
 }
 
+
 int main() {
     string filename = "database.csv";
     vector<CsvRow> csvData = readCsv(filename);
-    CsvRow newData = {"New", "Data", "Line", "Hi", "Here"};
+    string* ptr = getData();
+    CsvRow newData = {ptr[0], ptr[1], ptr[2], ptr[3], ptr[4], ptr[5]};
     // appendData(filename, newData);
     appendData(filename, newData);
 
@@ -64,8 +68,10 @@ int main() {
     csvData = readCsv(filename);
     cout << "\nUpdated Data:\n";
     for (const auto& row : csvData) {
-        cout << row.col1 << ", " << row.col2 << ", " << row.col3 << ", " << row.col4 << ", " << row.col5 << endl;
+        cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", " << row.password<< endl;
     }
+
+    
 
     return 0;
 }

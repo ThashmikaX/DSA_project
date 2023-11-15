@@ -1,51 +1,44 @@
 #include <iostream>
 #include <string>
-using namespace std;
-
-class person {
-private:
-	string F_name;
-	string L_name;
-	string birth;
-	string address;
-	string id;
-	string create_p;
-	string confirm_p;
-
-public:
-
-	void insert() {
-		cout << "***Welcome to the Banking App!***" << endl;
-		cout << "please enter your details" << endl;
-		cout << "First_Name : ";
-		cin >> F_name;
-		cout << "Last_Name : ";
-		cin >> L_name;
-		cout << " Birthdate (YYYY-MM-DD) : ";
-		cin >> birth;
-		cout << "NIC/Passport No : ";
-		cin >> id;
-		cout << "Address : ";
-		cin >> address;
-		cout << "Create your login password" << endl;
-		cout << "Password : ";
-		cin >> create_p;
-		if (create_p.length() < 8) {
-			cout << "Please enter a strong password" << endl;
-		}
-		cout << "Confirm your password" << endl;
-		cin >> confirm_p;
-		while (create_p == confirm_p) {
-			cout << "Password does not match" << endl;
-		}
-		cout << "Signup successful! Thank you for joining the Banking App." << endl;
-		
+#include "registration.h"
 
 
-	}
 
-};
-int main() {
-	person p1;
-	p1.insert();
+std::string * getData()
+{
+    std::string * person = new std::string[6];
+    std::string confirm_p;
+
+    std::cout << "***Welcome to the Banking App!***" << std::endl;
+    std::cout << "please enter your details" << std::endl;
+        std::cout << "First_Name : ";
+        std::cin >> person[0];
+        std::cout << "Last_Name : ";
+        std::cin >> person[1];
+        std::cout << "Birthdate (YYYY-MM-DD) : ";
+        std::cin >> person[2];
+        std::cout << "NIC/Passport No : ";
+        std::cin >> person[3];
+        std::cout << "Address : ";
+        std::cin >> person[4];
+        std::cout << "Create your login password" << std::endl;
+        std::cout << "Password : ";
+        std::cin >> person[5];
+        while (person[5].length() < 8) {
+            std::cout << "Please enter a strong password (at least 8 characters)" << std::endl;
+            std::cout << "Password : ";
+            std::cin >> person[5];
+        }
+
+        std::cout << "Confirm your password" << std::endl;
+        std::cin >> confirm_p;
+        while (person[5] != confirm_p) {
+            std::cout << "Password does not match. Please try again." << std::endl;
+            std::cout << "Confirm your password" << std::endl;
+            std::cin >> confirm_p;
+        }
+
+        std::cout << "Signup successful! Thank you for joining the Banking App." << std::endl;
+
+    return person;
 }
