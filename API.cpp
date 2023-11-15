@@ -94,7 +94,6 @@ bool findUsername(string username)
         CsvRow row;
 
         // Split the line into columns based on commas
-        // Split the line into columns based on commas
         getline(iss, row.F_name, ',');
         getline(iss, row.L_name, ',');
         getline(iss, row.birth, ',');
