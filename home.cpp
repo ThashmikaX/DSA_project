@@ -3,6 +3,8 @@
 #include "login.cpp"
 #include "about.h" 
 #include "about.cpp"
+#include "API.cpp"
+
 #include <iostream>
 #include <limits> // for numeric_limits
 
@@ -20,11 +22,12 @@ void home() {
         if(x==1)
         {
             cout<< "Registration\n";
+            registrationProcess();
             break;
 
         }
         else if(x==2){
-             loginPage();
+            loginPage();
             break;
         }
         else if(x==3){

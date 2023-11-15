@@ -4,7 +4,7 @@
 
 
 
-std::string * getData()
+std::string * registration()
 {
     std::string * person = new std::string[6];
     std::string confirm_p;

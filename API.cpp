@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "registration.cpp"
+#include "API.h"
 
 using namespace std;
 
@@ -55,23 +56,24 @@ void appendData(const string& filename, const CsvRow& newRow) {
     file.close();
 }
 
-
-int main() {
+void registrationProcess()
+{
     string filename = "database.csv";
-    vector<CsvRow> csvData = readCsv(filename);
-    string* ptr = getData();
+    string* ptr = registration();
     CsvRow newData = {ptr[0], ptr[1], ptr[2], ptr[3], ptr[4], ptr[5]};
     // appendData(filename, newData);
     appendData(filename, newData);
 
-    // Read and print the updated data
-    csvData = readCsv(filename);
-    cout << "\nUpdated Data:\n";
-    for (const auto& row : csvData) {
-        cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", " << row.password<< endl;
-    }
-
-    
-
-    return 0;
 }
+
+// int main() {
+
+//     registrationProcess();
+//     string filename = "database.csv";
+//     vector<CsvRow> csvData = readCsv(filename);
+//     cout << "\nUpdated Data:\n";
+//     for (const auto& row : csvData) {
+//         cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", " << row.password<< endl;
+//     }
+//     return 0;
+// }

@@ -1,1 +1,1 @@
-std::string * getData();
+std::string * registration();
