@@ -29,7 +29,7 @@ void loginPage() {
         cout << "Enter your password: ";
         cin >> password;
 
-        if (verifyPassword(username, password)) {
+        if (verifyPassword(password, username)) {
             validPassword = true;
         } else {
             cout << "Incorrect password. Please try again.\n";

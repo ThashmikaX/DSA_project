@@ -150,16 +150,16 @@ bool verifyPassword(string password, string username)
     return false;
 }
 
-int main() {
+// int main() {
 
-    //registrationProcess();
-    // vector<CsvRow> csvData = readCsv(filename);
-    // cout << "\nUpdated Data:\n";
-    // for (const auto& row : csvData) {
-    //     cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", "  << row.username << ", "  << row.password<< endl;
-    // }
-    // return 0;
-    cout << findUsername("user1") << endl;
-    cout << verifyPassword("aaaaaaaa", "user1") << endl;
-    cout << verifyPassword("44", "user57") << endl;
-}
+//     //registrationProcess();
+//     // vector<CsvRow> csvData = readCsv(filename);
+//     // cout << "\nUpdated Data:\n";
+//     // for (const auto& row : csvData) {
+//     //     cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", "  << row.username << ", "  << row.password<< endl;
+//     // }
+//     // return 0;
+//     cout << findUsername("user1") << endl;
+//     cout << verifyPassword("aaaaaaaa", "user1") << endl;
+//     cout << verifyPassword("44", "user57") << endl;
+// }
