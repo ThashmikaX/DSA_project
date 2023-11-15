@@ -13,7 +13,7 @@ using namespace std;
 void home() {
     int x;
     do{
-        cout << "1. Registration\n ";
+        cout << "1. Registration\n";
         cout << "2. Log-in\n";
         cout << "3. About us \n";
         cout << "Enter your option number :";
