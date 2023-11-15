@@ -5,10 +5,10 @@
 #include <string>
 #include "registration.cpp"
 #include "API.h"
+#pragma once
 
 using namespace std;
 string filename = "database.csv";
-
 
 struct CsvRow {
     string F_name, L_name, birth, address, id, username, password;
@@ -97,16 +97,14 @@ bool findUsername(string username)
 
         if(username == row.username)
         {
+            data.push_back(row);
             return true;
         }
-        else{
-            return false;
-        }
-
         data.push_back(row);
+        
     }
-
     file.close();
+    return false;
 }
 
 bool verifyPassword(string password, string username)
@@ -138,28 +136,30 @@ bool verifyPassword(string password, string username)
 
         if(username == row.username)
         {
-            if(password == row.password) return true;
-            else return false;
-        } 
-        else return false;
-            
-        
-
+            if(password == row.password)
+            {
+                data.push_back(row);
+                return true;
+            }
+        }
         data.push_back(row);
+        
     }
 
     file.close();
+    return false;
 }
 
-// int main() {
+int main() {
 
-//     //registrationProcess();
-//     // vector<CsvRow> csvData = readCsv(filename);
-//     // cout << "\nUpdated Data:\n";
-//     // for (const auto& row : csvData) {
-//     //     cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", "  << row.username << ", "  << row.password<< endl;
-//     // }
-//     // return 0;
-//     cout << findUsername("user1") << endl;
-//     cout << verifyPassword("aaaaaaaa", "user1") << endl;
-// }
+    //registrationProcess();
+    // vector<CsvRow> csvData = readCsv(filename);
+    // cout << "\nUpdated Data:\n";
+    // for (const auto& row : csvData) {
+    //     cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", "  << row.username << ", "  << row.password<< endl;
+    // }
+    // return 0;
+    cout << findUsername("user1") << endl;
+    cout << verifyPassword("aaaaaaaa", "user1") << endl;
+    cout << verifyPassword("44", "user57") << endl;
+}

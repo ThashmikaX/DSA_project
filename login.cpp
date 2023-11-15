@@ -38,6 +38,3 @@ void loginPage() {
 
     cout << "Login successful! Welcome, " << username << "!\n";
 }
-int main(){
-    loginPage();
-}

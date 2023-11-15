@@ -31,7 +31,7 @@ void home() {
             break;
         }
         else if(x==3){
-             aboutPage();
+            aboutPage();
             break;
         }
         else{

@@ -1,13 +1,12 @@
-while (person[5].length() < 8) {
-        //     cout << "Please enter a strong password (at least 8 characters)" << endl;
-        //     cout << "Password : ";
-        //     cin >> person[5];
-        // }
+int main() {
 
-        // cout << "Confirm your password" << endl;
-        // cin >> confirm_p;
-        // while (person[5] != confirm_p) {
-        //     cout << "Password does not match. Please try again." << endl;
-        //     cout << "Confirm your password" << endl;
-        //     cin >> confirm_p;
-        // }
+//     //registrationProcess();
+//     // vector<CsvRow> csvData = readCsv(filename);
+//     // cout << "\nUpdated Data:\n";
+//     // for (const auto& row : csvData) {
+//     //     cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", "  << row.username << ", "  << row.password<< endl;
+//     // }
+//     // return 0;
+//     cout << findUsername("user1") << endl;
+//     cout << verifyPassword("aaaaaaaa", "user1") << endl;
+// }
