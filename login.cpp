@@ -1,3 +1,4 @@
+#include "API.cpp"
 #include "login.h" 
 #include <iostream>
 #include <limits> // for numeric_limits
@@ -5,29 +6,38 @@
 
 using namespace std;
 
-bool authenticateUser(const string& username, const string& password) {
-    // Replace this with your authentication logic
-    return (username == "example" && password == "password");
-}
+
 
 void loginPage() {
-    string username, password;
-    bool loggedIn = false;
+     string username, password;
 
-    do {
+    bool validUsername = false;
+    bool validPassword = false;
+
+    while (!validUsername) {
         cout << "Enter your username: ";
         cin >> username;
 
+        if (findUsername(username)) {
+            validUsername = true;
+        } else {
+            cout << "Username not found. Please try again.\n";
+        }
+    }
+
+    while (!validPassword) {
         cout << "Enter your password: ";
         cin >> password;
 
-        if (authenticateUser(username, password)) {
-            cout << "Login successful!\n";
-            loggedIn = true;
-            // Add logic for successful login
+        if (verifyPassword(username, password)) {
+            validPassword = true;
         } else {
-            cout << "Invalid username or password. Please try again.\n";
-            // Add logic for unsuccessful login
+            cout << "Incorrect password. Please try again.\n";
         }
-    } while (!loggedIn);
+    }
+
+    cout << "Login successful! Welcome, " << username << "!\n";
+}
+int main(){
+    loginPage();
 }
