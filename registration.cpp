@@ -6,7 +6,7 @@
 
 std::string * registration()
 {
-    std::string * person = new std::string[6];
+    std::string * person = new std::string[7];
     std::string confirm_p;
 
     std::cout << "***Welcome to the Banking App!***" << std::endl;
@@ -21,18 +21,20 @@ std::string * registration()
         std::cin >> person[3];
         std::cout << "Address : ";
         std::cin >> person[4];
+        std::cout << "Username : ";
+        std::cin >> person[5];
         std::cout << "Create your login password" << std::endl;
         std::cout << "Password : ";
-        std::cin >> person[5];
-        while (person[5].length() < 8) {
+        std::cin >> person[6];
+        while (person[6].length() < 8) {
             std::cout << "Please enter a strong password (at least 8 characters)" << std::endl;
             std::cout << "Password : ";
-            std::cin >> person[5];
+            std::cin >> person[6];
         }
 
         std::cout << "Confirm your password" << std::endl;
         std::cin >> confirm_p;
-        while (person[5] != confirm_p) {
+        while (person[6] != confirm_p) {
             std::cout << "Password does not match. Please try again." << std::endl;
             std::cout << "Confirm your password" << std::endl;
             std::cin >> confirm_p;
