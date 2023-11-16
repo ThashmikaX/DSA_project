@@ -13,7 +13,7 @@ string filename = "database.csv";
 
 struct CsvRow {
     string F_name, L_name, birth, address, id, username, password, balance_str;
-    float balance = 0.0;
+    //float balance = 0.0;
 };
 
 vector<CsvRow> readCsv(const string& filename) {
@@ -75,7 +75,7 @@ void registrationProcess()
     cout << "ID Number : " << ptr[4] << "\n";
     cout << "Username : " << ptr[5] << "\n" << "_________________________________" << "\n";
     cout << "Login your account from here\n";
-    loginPage();
+    loginPage(0);
 
 }
 

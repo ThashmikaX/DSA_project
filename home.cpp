@@ -27,7 +27,7 @@ void home() {
 
         }
         else if(x==2){
-            loginPage();
+            loginPage(0);
             break;
         }
         else if(x==3){

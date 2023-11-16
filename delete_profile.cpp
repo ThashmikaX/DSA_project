@@ -1,5 +1,5 @@
-#include "delete_profile.h" 
-#include "API.cpp"
+#include "home.h"
+#include "login.h"
 #include <iostream>
 #include <limits> // for numeric_limits
 #include <string> // for string
@@ -7,43 +7,31 @@
 using namespace std;
 
 void deleteloginPage() {
-     string username, password;
-     int x;
+    loginPage(1);
 
-    bool validUsername = false;
-    bool validPassword = false;
+    int x;
 
-    while (!validUsername) {
-        cout << "Enter your username: ";
-        cin >> username;
-
-        if (findUsername(username)) {
-            validUsername = true;
-        } else {
-            cout << "Username not found. Please try again.\n";
-        }
-    }
-
-    while (!validPassword) {
-        cout << "Enter your password: ";
-        cin >> password;
-
-        if (verifyPassword(password, username)) {
-            validPassword = true;
-        } else {
-            cout << "Incorrect password. Please try again.\n";
-        }
-    }
     do{
 
-    cout << username << ",Are you Sure to Delete? \n";
+    cout << ",Are you Sure to Delete? \n";
     cout << "1. Yes \n";
     cout << "2. No \n";
+    cout << "Enter your option; ";
     cin >> x;
-    }while(x<3 || x>0);
-    cout << "Successfully Delete, Thanks" <<username<< "\n";
+    if(x==1){
+        cout<<"Account deletion successful! Goodbye\n";
+        break;
+    }
+    else if(x==2){
+        cout<<"Thanks !\n";
+        cout<<"__________________________________\n\n";
+        home();
+        break;
+    }
+    else{
+        cout<<"try again,input is not correct\n";
+    }
 
-
-    
-
-}
+    }
+    while(x<3 || x>0);
+} 
