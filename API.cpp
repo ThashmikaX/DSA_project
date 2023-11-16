@@ -74,7 +74,9 @@ void registrationProcess()
     cout << "ID Number : " << ptr[4] << "\n";
     cout << "Username : " << ptr[5] << "\n" << "_________________________________" << "\n";
     cout << "Login your account from here\n";
-    //loginPage();
+
+    loginPage(0);
+
 
 }
 

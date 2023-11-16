@@ -7,11 +7,12 @@
 
 using namespace std;
 
+// Generalized login function
+void loginPage(int y) {
+    string username, password;
+
 string currentUser = "Bob123";
 
-
-void loginPage() {
-     string username, password;
 
     bool validUsername = false;
     bool validPassword = false;
@@ -31,19 +32,26 @@ void loginPage() {
         cout << "Enter your password: ";
         cin >> password;
 
-        if (verifyPassword(password, username)) {
+        if (y == 0 && verifyPassword(password, username)) {
+            validPassword = true;
+        } else if (y == 1 && verifyPassword(password,username)) {
             validPassword = true;
         } else {
-            cout << "Incorrect password. Please try again.\n";
-            // cout << "Your password is already used by Piwpiw98.\n";
+            if (y == 0) {
+                cout << "Incorrect password. Please try again.\n";
+            } 
+            else if (y == 1) {
+                cout << "Invalid password. Account deletion failed.\n";
+            }
         }
     }
 
-    cout << "Login successful! Welcome, " << username << "!\n";
-    currentUser = username;
-}
 
-string getCurrentUser()
-{
-    return currentUser;
+    if (y == 0) {
+        cout << "Login successful! Welcome, " << username << "!\n";
+        menu();
+    } else if (y == 1) {
+        cout << "_______________________________\n";
+        // Additional logic if needed after account deletion
+    }
 }

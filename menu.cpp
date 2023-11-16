@@ -1,5 +1,7 @@
 #include <iostream>
+#include "account_balance.cpp"
 #include "menu.h"
+#include "transfer.cpp"
 #include "settings.cpp"
 #include "API.cpp"
 
@@ -9,6 +11,7 @@ using namespace std;
 void menu() {
     int y;
     do {
+        cout<< "---------------------------------------------\n\n";
         cout << "1. Account balance\n";
         cout << "2. Transfer\n";
         cout << "3. settings \n";
@@ -18,18 +21,23 @@ void menu() {
 
         if (y == 1)
         {
-            cout << "Your Account balance is : " << showBalance("user1");
-            menu();
+
+            accountbalancePage();
+
             break;
 
         }
         else if (y == 2) {
-            cout << "Transfer\n";
+
+        
             break;
         }
         else if (y == 3) {
             settingsPage();
             break;
+        }else{
+            cout<< "try again,input is not correct\n";
+
         }
       
 
