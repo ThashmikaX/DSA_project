@@ -1,6 +1,8 @@
 #include <iostream>
 #include "menu.h"
 #include "settings.cpp"
+#include "API.cpp"
+
 
 using namespace std;
 
@@ -16,7 +18,8 @@ void menu() {
 
         if (y == 1)
         {
-            cout << "Account balance\n";
+            cout << "Your Account balance is : " << showBalance("user1");
+            menu();
             break;
 
         }
