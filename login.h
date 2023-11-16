@@ -3,5 +3,6 @@
 #define LOGIN_H
 
 extern void loginPage();
+std::string getCurrentUser();
 
 #endif // LOGIN_H

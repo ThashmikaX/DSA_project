@@ -7,6 +7,7 @@
 
 using namespace std;
 
+string currentUser = "Bob123";
 
 
 void loginPage() {
@@ -39,4 +40,10 @@ void loginPage() {
     }
 
     cout << "Login successful! Welcome, " << username << "!\n";
+    currentUser = username;
+}
+
+string getCurrentUser()
+{
+    return currentUser;
 }

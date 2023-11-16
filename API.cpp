@@ -12,8 +12,7 @@ using namespace std;
 string filename = "database.csv";
 
 struct CsvRow {
-    string F_name, L_name, birth, address, id, username, password, balance_str;
-    float balance = 0.0;
+    string F_name, L_name, birth, address, id, username, password, balance_str = "00";
 };
 
 vector<CsvRow> readCsv(const string& filename) {
@@ -187,29 +186,36 @@ float showBalance(string username)
         getline(iss, row.password, ',');
         getline(iss, row.balance_str);
 
-        row.balance = stof(row.balance_str);
+
+
+
+        float balance = stof(row.balance_str);
+        
         //cout << " test1 " << row.username << row.password;
 
         if(username == row.username)
         {
-            return row.balance;
+            data.push_back(row);
+            //cout << "bal" << row.balance_str;
+            return balance;
         }
-        else return -1.1;
+        data.push_back(row);
         
     }
     file.close();
     return -1.2;
     cout << "come to end";
 }
-int main() {
+// int main() {
 
-    //registrationProcess();
-    // vector<CsvRow> csvData = readCsv(filename);
-    // cout << "\nUpdated Data:\n";
-    // for (const auto& row : csvData) {
-    //     cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", "  << row.username << ", "  << row.password<< endl;
-    // }
-    // return 0;
-    cout << "Test2 " << showBalance("user1") << endl;
-    return 0;
-}
+//     //registrationProcess();
+//     vector<CsvRow> csvData = readCsv(filename);
+//     cout << "\nUpdated Data:\n";
+//     for (const auto& row : csvData) {
+//         cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", "  << row.username << ", "  << row.password<< ", "  << row.balance_str<< endl;
+//     }
+//     cout << "finduser " << findUsername("user1") << endl;
+//     cout << "Test2 " << showBalance("user1") << endl;
+//     cout << "Test2 " << showBalance("user4") << endl;
+//     return 0;
+// }
