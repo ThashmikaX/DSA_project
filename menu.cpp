@@ -10,6 +10,7 @@ void menu() {
         cout << "1. Account balance\n";
         cout << "2. Transfer\n";
         cout << "3. settings \n";
+
         cout << "Enter your option number :";
         cin >> y;
 

@@ -30,20 +30,13 @@ void loginPage() {
         cout << "Enter your password: ";
         cin >> password;
 
-        if (verifyPassword(username, password)) {
+        if (verifyPassword(password, username)) {
             validPassword = true;
         } else {
             cout << "Incorrect password. Please try again.\n";
+            // cout << "Your password is already used by Piwpiw98.\n";
         }
     }
 
     cout << "Login successful! Welcome, " << username << "!\n";
-<<<<<<< Updated upstream
-}
-int main(){
-    loginPage();
-=======
-    menu();
-
->>>>>>> Stashed changes
 }

@@ -3,12 +3,17 @@
 #include <sstream>
 #include <vector>
 #include <string>
-
+#include "registration.cpp"
+#include "API.h"
+#include "login.h"
+#pragma once
 
 using namespace std;
+string filename = "database.csv";
 
 struct CsvRow {
-    string col1, col2, col3, col4, col5;
+    string F_name, L_name, birth, address, id, username, password, balance_str;
+    float balance = 0.0;
 };
 
 vector<CsvRow> readCsv(const string& filename) {
@@ -26,11 +31,14 @@ vector<CsvRow> readCsv(const string& filename) {
         CsvRow row;
 
         // Split the line into columns based on commas
-        getline(iss, row.col1, ',');
-        getline(iss, row.col2, ',');
-        getline(iss, row.col3, ',');
-        getline(iss, row.col4, ',');
-        getline(iss, row.col5);
+        getline(iss, row.F_name, ',');
+        getline(iss, row.L_name, ',');
+        getline(iss, row.birth, ',');
+        getline(iss, row.address, ',');
+        getline(iss, row.id, ',');
+        getline(iss, row.username, ',');
+        getline(iss, row.password, ',');
+        getline(iss, row.balance_str);
 
         data.push_back(row);
     }
@@ -48,22 +56,127 @@ void appendData(const string& filename, const CsvRow& newRow) {
     }
 
     // Append the new data line with comma separation
-    file << newRow.col1 << "," << newRow.col2 << "," << newRow.col3 << "," << newRow.col4 << "," << newRow.col5 << "\n";
+    file << newRow.F_name << "," << newRow.L_name << "," << newRow.birth << "," << newRow.address << "," << newRow.id << "," << newRow.username << "," << newRow.password << "\n";
 
     file.close();
 }
 
-int main() {
-    string filename = "database.csv";
-    vector<CsvRow> csvData = readCsv(filename);
+void registrationProcess()
+{
+    string* ptr = registration();
+    CsvRow newData = {ptr[0], ptr[1], ptr[2], ptr[3], ptr[4], ptr[5], ptr[6]};
+    // appendData(filename, newData);
     appendData(filename, newData);
+    cout << "\n" << "Your Details " << "\n";
+    cout << "First Name : " << ptr[0] << "\n";
+    cout << "Last Name : " << ptr[1] << "\n";
+    cout << "Birthday : " << ptr[2] << "\n";
+    cout << "Address : " << ptr[3] << "\n";
+    cout << "ID Number : " << ptr[4] << "\n";
+    cout << "Username : " << ptr[5] << "\n" << "_________________________________" << "\n";
+    cout << "Login your account from here\n";
+    loginPage();
 
-    // Read and print the updated data
-    csvData = readCsv(filename);
-    cout << "\nUpdated Data:\n";
-    for (const auto& row : csvData) {
-        cout << row.col1 << ", " << row.col2 << ", " << row.col3 << ", " << row.col4 << ", " << row.col5 << endl;
+}
+
+bool findUsername(string username)
+{
+    vector<CsvRow> data;
+    ifstream file(filename);
+
+    if (!file.is_open()) {
+        cerr << "Error opening file: " << filename << endl;
+        return false;
     }
 
-    return 0;
+    string line;
+    while (getline(file, line)) {
+        istringstream iss(line);
+        CsvRow row;
+
+        // Split the line into columns based on commas
+        getline(iss, row.F_name, ',');
+        getline(iss, row.L_name, ',');
+        getline(iss, row.birth, ',');
+        getline(iss, row.address, ',');
+        getline(iss, row.id, ',');
+        getline(iss, row.username, ',');
+        getline(iss, row.password, ',');
+        getline(iss, row.balance_str);
+
+
+        //cout << " test1 " << row.username << row.password;
+
+        if(username == row.username)
+        {
+            data.push_back(row);
+            return true;
+        }
+        data.push_back(row);
+        
+    }
+    file.close();
+    return false;
 }
+
+bool verifyPassword(string password, string username)
+{
+    vector<CsvRow> data;
+    ifstream file(filename);
+
+    if (!file.is_open()) {
+        cerr << "Error opening file: " << filename << endl;
+        return false;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        istringstream iss(line);
+        CsvRow row;
+
+        // Split the line into columns based on commas
+        // Split the line into columns based on commas
+        getline(iss, row.F_name, ',');
+        getline(iss, row.L_name, ',');
+        getline(iss, row.birth, ',');
+        getline(iss, row.address, ',');
+        getline(iss, row.id, ',');
+        getline(iss, row.username, ',');
+        getline(iss, row.password, ',');
+        getline(iss, row.balance_str);
+
+        //cout << " test1 " << row.username << row.password;
+
+        if(username == row.username)
+        {
+            if(password == row.password)
+            {
+                data.push_back(row);
+                return true;
+            }
+        }
+        data.push_back(row);
+        
+    }
+
+    file.close();
+    return false;
+}
+
+void showBalance()
+{
+
+}
+// int main() {
+
+//     //registrationProcess();
+//     // vector<CsvRow> csvData = readCsv(filename);
+//     // cout << "\nUpdated Data:\n";
+//     // for (const auto& row : csvData) {
+//     //     cout << row.F_name << ", " << row.L_name << ", " << row.birth << ", " << row.address << ", " << row.id << ", "  << row.username << ", "  << row.password<< endl;
+//     // }
+//     // return 0;
+//     cout << findUsername("user1") << endl;
+//     cout << verifyPassword("aaaaaaaa", "user1") << endl;
+//     cout << verifyPassword("44", "user57") << endl;
+// }
