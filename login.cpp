@@ -1,5 +1,6 @@
 #include "API.cpp"
 #include "login.h" 
+#include "menu.cpp"
 #include <iostream>
 #include <limits> // for numeric_limits
 #include <string> // for string
@@ -37,7 +38,12 @@ void loginPage() {
     }
 
     cout << "Login successful! Welcome, " << username << "!\n";
+<<<<<<< Updated upstream
 }
 int main(){
     loginPage();
+=======
+    menu();
+
+>>>>>>> Stashed changes
 }
