@@ -11,6 +11,9 @@ using namespace std;
 void loginPage(int y) {
     string username, password;
 
+string currentUser = "Bob123";
+
+
     bool validUsername = false;
     bool validPassword = false;
 
@@ -43,6 +46,7 @@ void loginPage(int y) {
         }
     }
 
+
     if (y == 0) {
         cout << "Login successful! Welcome, " << username << "!\n";
         menu();
@@ -51,5 +55,3 @@ void loginPage(int y) {
         // Additional logic if needed after account deletion
     }
 }
-
-

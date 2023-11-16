@@ -3,6 +3,8 @@
 #include "menu.h"
 #include "transfer.cpp"
 #include "settings.cpp"
+#include "API.cpp"
+
 
 using namespace std;
 
@@ -19,7 +21,9 @@ void menu() {
 
         if (y == 1)
         {
+
             accountbalancePage();
+
             break;
 
         }
