@@ -12,7 +12,8 @@ using namespace std;
 string filename = "database.csv";
 
 struct CsvRow {
-    string F_name, L_name, birth, address, id, username, password;
+    string F_name, L_name, birth, address, id, username, password, balance_str;
+    float balance = 0.0;
 };
 
 vector<CsvRow> readCsv(const string& filename) {
@@ -36,8 +37,8 @@ vector<CsvRow> readCsv(const string& filename) {
         getline(iss, row.address, ',');
         getline(iss, row.id, ',');
         getline(iss, row.username, ',');
-        getline(iss, row.password);
-
+        getline(iss, row.password, ',');
+        getline(iss, row.balance_str);
 
         data.push_back(row);
     }
@@ -100,7 +101,9 @@ bool findUsername(string username)
         getline(iss, row.address, ',');
         getline(iss, row.id, ',');
         getline(iss, row.username, ',');
-        getline(iss, row.password);
+        getline(iss, row.password, ',');
+        getline(iss, row.balance_str);
+
 
         //cout << " test1 " << row.username << row.password;
 
@@ -139,7 +142,8 @@ bool verifyPassword(string password, string username)
         getline(iss, row.address, ',');
         getline(iss, row.id, ',');
         getline(iss, row.username, ',');
-        getline(iss, row.password);
+        getline(iss, row.password, ',');
+        getline(iss, row.balance_str);
 
         //cout << " test1 " << row.username << row.password;
 
@@ -159,6 +163,10 @@ bool verifyPassword(string password, string username)
     return false;
 }
 
+void showBalance()
+{
+
+}
 // int main() {
 
 //     //registrationProcess();
