@@ -1,33 +1,49 @@
 #include "delete_profile.h" 
+#include "API.cpp"
 #include <iostream>
 #include <limits> // for numeric_limits
 #include <string> // for string
 
 using namespace std;
 
-bool authenticateUser(const string& username, const string& password) {
-    // Replace this with your authentication logic
-    return (username == "example" && password == "password");
-}
+void deleteloginPage() {
+     string username, password;
+     int x;
 
-void deleteprofilePage() {
-    string username, password;
-    bool loggedIn = false;
+    bool validUsername = false;
+    bool validPassword = false;
 
-    do {
+    while (!validUsername) {
         cout << "Enter your username: ";
         cin >> username;
 
+        if (findUsername(username)) {
+            validUsername = true;
+        } else {
+            cout << "Username not found. Please try again.\n";
+        }
+    }
+
+    while (!validPassword) {
         cout << "Enter your password: ";
         cin >> password;
 
-        if (authenticateUser(username, password)) {
-            cout << "Successfully delete \n";
-            loggedIn = true;
-            // Add logic for successful login
+        if (verifyPassword(password, username)) {
+            validPassword = true;
         } else {
-            cout << "Invalid username or password. Please try again.\n";
-            // Add logic for unsuccessful login
+            cout << "Incorrect password. Please try again.\n";
         }
-    } while (!loggedIn);
+    }
+    do{
+
+    cout << username << ",Are you Sure to Delete? \n";
+    cout << "1. Yes \n";
+    cout << "2. No \n";
+    cin >> x;
+    }while(x<3 || x>0);
+    cout << "Successfully Delete, Thanks" <<username<< "\n";
+
+
+    
+
 }

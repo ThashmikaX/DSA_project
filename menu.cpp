@@ -1,14 +1,16 @@
 #include <iostream>
 #include "menu.h"
+#include "settings.cpp"
 
 using namespace std;
 
 void menu() {
     int y;
     do {
-        cout << "1. Account balance\n ";
+        cout << "1. Account balance\n";
         cout << "2. Transfer\n";
-        cout << "3. settings\n";
+        cout << "3. settings \n";
+
         cout << "Enter your option number :";
         cin >> y;
 
@@ -23,7 +25,7 @@ void menu() {
             break;
         }
         else if (y == 3) {
-            cout << "Settings \n";
+            settingsPage();
             break;
         }
       
