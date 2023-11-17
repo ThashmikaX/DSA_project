@@ -164,50 +164,50 @@ bool verifyPassword(string password, string username)
     return false;
 }
 
-float showBalance(string username)
-{
-    vector<CsvRow> data;
-    ifstream file(filename);
+// float showBalance(string username)
+// {
+//     vector<CsvRow> data;
+//     ifstream file(filename);
 
-    if (!file.is_open()) {
-        cerr << "Error opening file: " << filename << endl;
-    }
+//     if (!file.is_open()) {
+//         cerr << "Error opening file: " << filename << endl;
+//     }
 
-    string line;
-    while (getline(file, line)) {
-        istringstream iss(line);
-        CsvRow row;
+//     string line;
+//     while (getline(file, line)) {
+//         istringstream iss(line);
+//         CsvRow row;
 
-        // Split the line into columns based on commas
-        getline(iss, row.F_name, ',');
-        getline(iss, row.L_name, ',');
-        getline(iss, row.birth, ',');
-        getline(iss, row.address, ',');
-        getline(iss, row.id, ',');
-        getline(iss, row.username, ',');
-        getline(iss, row.password, ',');
-        getline(iss, row.balance_str);
-
-
+//         // Split the line into columns based on commas
+//         getline(iss, row.F_name, ',');
+//         getline(iss, row.L_name, ',');
+//         getline(iss, row.birth, ',');
+//         getline(iss, row.address, ',');
+//         getline(iss, row.id, ',');
+//         getline(iss, row.username, ',');
+//         getline(iss, row.password, ',');
+//         getline(iss, row.balance_str);
 
 
-        float balance = stof(row.balance_str);
+
+
+//         float balance = stof(row.balance_str);
         
-        //cout << " test1 " << row.username << row.password;
+//         //cout << " test1 " << row.username << row.password;
 
-        if(username == row.username)
-        {
-            data.push_back(row);
-            //cout << "bal" << row.balance_str;
-            return balance;
-        }
-        data.push_back(row);
+//         if(username == row.username)
+//         {
+//             data.push_back(row);
+//             //cout << "bal" << row.balance_str;
+//             return balance;
+//         }
+//         data.push_back(row);
         
-    }
-    file.close();
-    return -1.2;
-    cout << "come to end";
-}
+//     }
+//     file.close();
+//     return -1.2;
+//     cout << "come to end";
+// }
 // int main() {
 
 //     //registrationProcess();

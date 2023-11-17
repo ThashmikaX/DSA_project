@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -6,6 +5,8 @@
 #include "login.cpp"
 
 std::string current_User = getCurrentUser();
+//std::string current_User = "Bob123";
+
 
 // Node structure representing a person
 struct Person {
@@ -49,13 +50,13 @@ public:
             newPerson->next = head;
             head = newPerson;
         }
-        cout << "Person added successfully.\n";
+        std::cout << "Person added successfully.\n";
     }
 
     // Function to delete a person from the list
     void deletePerson() {
         if (head == nullptr) {
-            cout << "List is empty. Cannot delete.\n";
+            std::cout << "List is empty. Cannot delete.\n";
             return;
         }
 
@@ -63,7 +64,7 @@ public:
             Person* temp = head;
             head = head->next;
             delete temp;
-            cout << "Person deleted successfully.\n";
+            std::cout << "Person deleted successfully.\n";
             return;
         }
 
@@ -73,12 +74,12 @@ public:
         }
 
         if (current->next == nullptr) {
-            cout << "Person not found.\n";
+            std::cout << "Person not found.\n";
         } else {
             Person* temp = current->next;
             current->next = current->next->next;
             delete temp;
-            cout << "Person deleted successfully.\n";
+            std::cout << "Person deleted successfully.\n";
         }
     }
 
@@ -90,7 +91,7 @@ public:
         }
 
         if (current == nullptr) {
-            cout << "Person not found.\n";
+            std::cout << "Person not found.\n";
         } else {
             if (property == "fname") {
                 current->fname = value;
@@ -107,11 +108,11 @@ public:
             } else if (property == "password") {
                 current->password = value;
             } else {
-                cout << "Invalid property.\n";
+                std::cout << "Invalid property.\n";
                 return;
             }
 
-            cout << "Person properties changed successfully.\n";
+            std::cout << "Person properties changed successfully.\n";
         }
     }
 
@@ -123,24 +124,24 @@ public:
         }
 
         if (current == nullptr) {
-            cout << "Person not found.\n";
+            std::cout << "Person not found.\n";
         } else {
-            cout << "Username: " << current->username << "\n";
-            cout << "First Name: " << current->fname << "\n";
-            cout << "Last Name: " << current->lname << "\n";
-            cout << "Age: " << current->age << "\n";
-            cout << "ID: " << current->id << "\n";
-            cout << "Address: " << current->address << "\n";
-            cout << "Account Number: " << current->accountnumber << "\n";
-            cout << "Password: " << current->password << "\n";
+            std::cout << "Username: " << current->username << "\n";
+            std::cout << "First Name: " << current->fname << "\n";
+            std::cout << "Last Name: " << current->lname << "\n";
+            std::cout << "Age: " << current->age << "\n";
+            std::cout << "ID: " << current->id << "\n";
+            std::cout << "Address: " << current->address << "\n";
+            std::cout << "Account Number: " << current->accountnumber << "\n";
+            std::cout << "Password: " << current->password << "\n";
         }
     }
 
     // Function to save the updated data to a CSV file
     void saveToCSV(const std::string& filename) {
-        ofstream outputFile(filename);
+        std::ofstream outputFile(filename);
         if (!outputFile.is_open()) {
-            cerr << "Error opening file for writing.\n";
+            std::cerr << "Error opening file for writing.\n";
             return;
         }
 
@@ -153,7 +154,7 @@ public:
             current = current->next;
         }
 
-        cout << "Data saved to " << filename << " successfully.\n";
+        std::cout << "Data saved to " << filename << " successfully.\n";
     }
 };
 
@@ -162,16 +163,16 @@ int main() {
     PersonLinkedList personList;
 
     // Read data from CSV file
-    ifstream inputFile("data.csv");
+    std::ifstream inputFile("data.csv");
     if (!inputFile.is_open()) {
-        cerr << "Error opening file.\n";
+        std::cerr << "Error opening file.\n";
         return 1;
     }
 
-    string line;
+    std::string line;
     while (getline(inputFile, line)) {
-        stringstream ss(line);
-        string fname, lname, id, address, username, accountnumber, password;
+        std::stringstream ss(line);
+        std::string fname, lname, id, address, username, accountnumber, password;
         int age;
 
         getline(ss, fname, ',');
@@ -193,14 +194,15 @@ int main() {
     //personList.deletePerson(); // Delete person with username "AliceSmith"
 
     // // Add a new person
-    //personList.addPerson("Bob", "Johnson", 25, "B123456", "123 Main St", "Bob123", "789012345", "password123");
+    personList.addPerson("Bob", "Johnson", 25, "B123456", "123 Main St", "Bob123", "789012345", "password123");
 
     // // Change properties of a person
-    personList.changePersonProperties("age", "30");
+    personList.changePersonProperties("age", "45");
     personList.changePersonProperties("address", "456 Oak St");
 
     // // Save updated data to CSV file
     personList.saveToCSV("data.csv");
+    std::cout << "test 1";
 
     return 0;
 }

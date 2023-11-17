@@ -3,34 +3,31 @@
 #include "menu.cpp"
 #include <iostream>
 #include <limits> // for numeric_limits
-#include <string> // for string
+#include <string> // for std::string
 
-using namespace std;
+std::string currentUser = "Bob123";
 
 // Generalized login function
 void loginPage(int y) {
-    string username, password;
-
-string currentUser = "Bob123";
-
+    std::string username, password;
 
     bool validUsername = false;
     bool validPassword = false;
 
     while (!validUsername) {
-        cout << "Enter your username: ";
-        cin >> username;
+        std::cout << "Enter your username: ";
+        std::cin >> username;
 
         if (findUsername(username)) {
             validUsername = true;
         } else {
-            cout << "Username not found. Please try again.\n";
+            std::cout << "Username not found. Please try again.\n";
         }
     }
 
     while (!validPassword) {
-        cout << "Enter your password: ";
-        cin >> password;
+        std::cout << "Enter your password: ";
+        std::cin >> password;
 
         if (y == 0 && verifyPassword(password, username)) {
             validPassword = true;
@@ -38,20 +35,33 @@ string currentUser = "Bob123";
             validPassword = true;
         } else {
             if (y == 0) {
-                cout << "Incorrect password. Please try again.\n";
+                std::cout << "Incorrect password. Please try again.\n";
             } 
             else if (y == 1) {
-                cout << "Invalid password. Account deletion failed.\n";
+                std::cout << "Invalid password. Account deletion failed.\n";
             }
         }
     }
 
 
     if (y == 0) {
-        cout << "Login successful! Welcome, " << username << "!\n";
+        std::cout << "Login successful! Welcome, " << username << "!\n";
+        currentUser = username;
         menu();
     } else if (y == 1) {
-        cout << "_______________________________\n";
+        std::cout << "_______________________________\n";
         // Additional logic if needed after account deletion
     }
 }
+
+std::string getCurrentUser()
+{
+    return currentUser;
+}
+
+// int main()
+// {
+//     //cout << getCurrentUser();
+//     //loginPage(0);
+//     cout << "test";
+// }

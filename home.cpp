@@ -1,7 +1,5 @@
 #include "home.h"
-#include "login.h" 
 #include "login.cpp"
-#include "about.h" 
 #include "about.cpp"
 #include "API.cpp"
 

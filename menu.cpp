@@ -2,8 +2,8 @@
 #include "account_balance.cpp"
 #include "menu.h"
 #include "transfer.cpp"
-#include "settings.cpp"
-#include "API.cpp"
+//#include "settings.cpp"
+//#include "API.cpp"
 
 
 using namespace std;
@@ -33,7 +33,7 @@ void menu() {
             break;
         }
         else if (y == 3) {
-            settingsPage();
+            //settingsPage();
             break;
         }else{
             cout<< "try again,input is not correct\n";
