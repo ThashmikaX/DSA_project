@@ -1,4 +1,3 @@
-#include "delete_profile.cpp"
 #include "delete_profile.h"
 #include "settings.h"
 #include <iostream>

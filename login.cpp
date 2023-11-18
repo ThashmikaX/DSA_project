@@ -1,6 +1,6 @@
-#include "API.cpp"
+#include "API.h"
 #include "login.h" 
-#include "menu.cpp"
+#include "menu.h"
 #include <iostream>
 #include <limits> // for numeric_limits
 #include <string> // for std::string

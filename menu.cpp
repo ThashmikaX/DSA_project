@@ -1,7 +1,7 @@
 #include <iostream>
-#include "account_balance.cpp"
+#include "account_balance.h"
 #include "menu.h"
-#include "transfer.cpp"
+#include "transfer.h"
 //#include "settings.cpp"
 //#include "API.cpp"
 

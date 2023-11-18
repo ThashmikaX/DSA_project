@@ -2,11 +2,9 @@
 #include <string>
 #include "registration.h"
 
-
-
 std::string * registration()
 {
-    std::string * person = new std::string[7];
+    std::string * person = new std::string[8];
     std::string confirm_p;
 
     std::cout << "**Welcome to the Banking App!**" << std::endl;
@@ -15,7 +13,7 @@ std::string * registration()
         std::cin >> person[0];
         std::cout << "Last_Name : ";
         std::cin >> person[1];
-        std::cout << "Birthdate (YYYY-MM-DD) : ";
+        std::cout << "age : ";
         std::cin >> person[2];
         std::cout << "NIC/Passport No : ";
         std::cin >> person[3];
@@ -23,24 +21,24 @@ std::string * registration()
         std::cin >> person[4];
         std::cout << "Username : ";
         std::cin >> person[5];
+        std::cout << "account number : ";
+        std::cin >> person[6];
     do {
         std::cout << "Create your login password (at least 8 characters, no commas): ";
-        std::cin >> person[6];
+        std::cin >> person[7];
 
      
-        if (person[6].length() < 8) {
+        if (person[7].length() < 8) {
             std::cout << "Please enter a strong password (at least 8 characters)" << std::endl;
             continue;
         }
 
        
-        if (person[6].find(',') != std::string::npos) {
+        if (person[7].find(',') != std::string::npos) {
             std::cout << "Please enter valid characters." << std::endl;
             continue;
         }
-
         break; 
-
     } while (true);
 
    
@@ -48,11 +46,11 @@ std::string * registration()
         std::cout << "Confirm your password: ";
         std::cin >> confirm_p;
 
-        if (person[6] != confirm_p) {
+        if (person[7] != confirm_p) {
             std::cout << "Password does not match. Please try again." << std::endl;
         }
 
-    } while (person[6] != confirm_p);
+    } while (person[7] != confirm_p);
 
         std::cout << "\n" << "Signup successful! Thank you for joining the Banking App." << std::endl;
 

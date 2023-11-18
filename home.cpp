@@ -1,7 +1,7 @@
 #include "home.h"
-#include "login.cpp"
-#include "about.cpp"
-#include "API.cpp"
+#include "login.h"
+#include "about.h"
+#include "API.h"
 
 #include <iostream>
 #include <limits> // for numeric_limits
