@@ -20,7 +20,7 @@ private:
 
 public:
     // Constructor
-    PersonLinkedList() : head(nullptr) {}
+    PersonLinkedList();
 
     // Destructor to free memory when the program ends
     ~PersonLinkedList();
@@ -43,8 +43,12 @@ public:
 
     // Function to save the updated data to a CSV file
     void saveToCSV(const std::string& filename);
+
+    bool findUsername(std::string username);
+    bool verifyPassword(std::string password, std::string username);
+    void loadCsvData();
+
+
 };
-
-
 
 #endif

@@ -1,12 +1,14 @@
 #include "home.h"
 #include "login.h"
 #include "about.h"
-#include "API.h"
+#include "API_v2.h"
 
 #include <iostream>
 #include <limits> // for numeric_limits
 
 using namespace std;
+
+PersonLinkedList personList1;
 
 void home() {
     int x;
@@ -20,7 +22,7 @@ void home() {
         if(x==1)
         {
             cout<< "Registration\n";
-            registrationProcess();
+            personList1.registrationProcess();
             break;
 
         }
