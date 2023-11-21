@@ -19,9 +19,9 @@ std::string * registration()
         std::cin >> person[3];
         std::cout << "Address : ";
         std::cin >> person[4];
-        std::cout << "Username : ";
+        std::cout << "Account number : ";
         std::cin >> person[5];
-        std::cout << "account number : ";
+        std::cout << "Username : ";
         std::cin >> person[6];
     do {
         std::cout << "Create your login password (at least 8 characters, no commas): ";

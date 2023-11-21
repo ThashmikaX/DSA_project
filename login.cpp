@@ -1,12 +1,15 @@
 #include "API_v2.h"
 #include "login.h" 
 #include "menu.h"
+#include "home.h"
+#include "class.h"
+
 #include <iostream>
 #include <limits> // for numeric_limits
 #include <string> // for std::string
 
-std::string currentUser = "Bob123";
-PersonLinkedList personList;
+std::string currentUser = "";
+PersonLinkedList personList1;
 
 // Generalized login function
 void loginPage(int y) {
@@ -19,7 +22,7 @@ void loginPage(int y) {
         std::cout << "Enter your username: ";
         std::cin >> username;
 
-        if (personList.findUsername(username)) {
+        if (personList1.findUsername(username)) {
             validUsername = true;
         } else {
             std::cout << "Username not found. Please try again.\n";
@@ -30,9 +33,9 @@ void loginPage(int y) {
         std::cout << "Enter your password: ";
         std::cin >> password;
 
-        if (y == 0 && personList.verifyPassword(password, username)) {
+        if (y == 0 && personList1.verifyPassword(password, username)) {
             validPassword = true;
-        } else if (y == 1 && personList.verifyPassword(password,username)) {
+        } else if (y == 1 && personList1.verifyPassword(password,username)) {
             validPassword = true;
         } else {
             if (y == 0) {

@@ -2,13 +2,13 @@
 #include "login.h"
 #include "about.h"
 #include "API_v2.h"
+#include "class.h"
+
 
 #include <iostream>
 #include <limits> // for numeric_limits
 
 using namespace std;
-
-PersonLinkedList personList1;
 
 void home() {
     int x;

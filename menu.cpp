@@ -2,8 +2,7 @@
 #include "account_balance.h"
 #include "menu.h"
 #include "transfer.h"
-//#include "settings.cpp"
-//#include "API.cpp"
+#include "settings.h"
 
 
 using namespace std;
@@ -28,12 +27,11 @@ void menu() {
 
         }
         else if (y == 2) {
-
         
             break;
         }
         else if (y == 3) {
-            //settingsPage();
+            settingsPage();
             break;
         }else{
             cout<< "try again,input is not correct\n";
