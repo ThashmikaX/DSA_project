@@ -9,7 +9,7 @@
 #include "home.h"
 
 //std::string current_User = getCurrentUser();
-std::string current_User = "s";
+std::string current_User = "Bob1243";
 
 PersonLinkedList::PersonLinkedList() : head(nullptr) {}
 
@@ -40,7 +40,7 @@ void PersonLinkedList::registrationProcess()
     {
         this->loadCsvData();
         std::string* ptr = registration();
-    
+
         // appendData(filename, newData);
         std::cout << "registration procces called\n";
         std::cout << typeid(ptr[2]).name();
@@ -55,7 +55,7 @@ void PersonLinkedList::registrationProcess()
         std::cout << "Address : " << ptr[6] << "\n";
         std::cout << "Account Number : " << ptr[7] << "\n" << "_________________________________" << "\n";
         std::cout << "Login your account from here\n";
-        this->saveToCSV("database/list2.csv");
+        this->saveToCSV("D:/pation/project/PROGRAMMING PROJECTS/DSA_project/database/list2.csv");
         std::cout << "\ndata check" << ptr[0];
         std::cout << "\nsave called";
         this->showPersonProperties();
@@ -173,7 +173,7 @@ bool PersonLinkedList::verifyPassword(std::string password, std::string username
 void PersonLinkedList::loadCsvData()
 {
     // Read data from CSV file
-    std::ifstream inputFile("database/list2.csv");
+    std::ifstream inputFile("data1.csv");
     if (!inputFile.is_open()) {
         std::cerr << "Error opening file.\n";
     }
@@ -199,22 +199,9 @@ void PersonLinkedList::loadCsvData()
     }
 }
 
-// int main() {
-
-//     // Example usage of functions
-//     //personList.showPersonProperties(); // Display properties of person with username "JohnDoe"
-//     //personList.deletePerson(); // Delete person with username "AliceSmith"
-
-//     // // Add a new person
-//     personList.addPerson("Bob", "Johnson", 25, "B123456", "123 Main St", "Bob123", "789012345", "password123");
-
-//     // // Change properties of a person
-//     personList.changePersonProperties("age", "45");
-//     personList.changePersonProperties("address", "456 Oak St");
-
-//     // // Save updated data to CSV file
-//     personList.saveToCSV("database/list2.csv");
-//     std::cout << "test 1";
-
-//     return 0;
-// }
+//  int main() {
+//     PersonLinkedList p1;
+//     p1.loadCsvData();
+//     p1.addPerson("sp","ss",10,"ss","ss","ss","ss", "ss");
+//     p1.saveToCSV("data1.csv");
+//  }
