@@ -11,6 +11,7 @@ struct Person {
     std::string username;
     std::string accountnumber;
     std::string password;
+    float amount;
     Person* next;
 };
 
@@ -28,7 +29,7 @@ public:
     // Function to add a new person to the list
     void addPerson(const std::string& fname, const std::string& lname, int age,
                     const std::string& id, const std::string& address, const std::string& username,
-                    const std::string& accountnumber, const std::string& password);
+                    const std::string& accountnumber, const std::string& password, float person_amount_1);
 
     void registrationProcess();
 

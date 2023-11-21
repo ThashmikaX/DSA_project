@@ -8,7 +8,6 @@
 #include <limits> // for numeric_limits
 #include <string> // for std::string
 
-std::string currentUser = "";
 PersonLinkedList personList1;
 
 // Generalized login function
@@ -50,7 +49,6 @@ void loginPage(int y) {
 
     if (y == 0) {
         std::cout << "Login successful! Welcome, " << username << "!\n";
-        currentUser = username;
         menu();
     } else if (y == 1) {
         std::cout << "_______________________________\n";
@@ -58,10 +56,6 @@ void loginPage(int y) {
     }
 }
 
-std::string getCurrentUser()
-{
-    return currentUser;
-}
 
 // int main()
 // {

@@ -8,10 +8,11 @@
 #include "registration.h"
 #include "home.h"
 
-std::string current_User = getCurrentUser();
-// std::string current_User = "Bob1243";
+std::string current_User = "";
 
-PersonLinkedList::PersonLinkedList() : head(nullptr) {}
+PersonLinkedList::PersonLinkedList() : head(nullptr) {
+    this->loadCsvData();
+}
 
 
 // Linked list class
@@ -25,8 +26,9 @@ PersonLinkedList::~PersonLinkedList() {
 
 void PersonLinkedList::addPerson(const std::string& fname, const std::string& lname, int age,
                     const std::string& id, const std::string& address, const std::string& username,
-                    const std::string& accountnumber, const std::string& password) {
-        Person* newPerson = new Person{ fname, lname, age, id, address, username, accountnumber, password, nullptr };
+                    const std::string& accountnumber, const std::string& password, float person_amount_1) {
+                        float person_amount = 0.0;
+        Person* newPerson = new Person{ fname, lname, age, id, address, username, accountnumber, password, person_amount, nullptr };
         if (head == nullptr) {
             head = newPerson;
         } else {
@@ -38,11 +40,9 @@ void PersonLinkedList::addPerson(const std::string& fname, const std::string& ln
 
 void PersonLinkedList::registrationProcess()
     {
-        this->loadCsvData();
         std::string* ptr = registration();
-
         std::cout << typeid(ptr[2]).name();
-        this->addPerson(ptr[0], ptr[1], stoi(ptr[2]), ptr[3], ptr[4], ptr[5], ptr[6], ptr[7]);
+        this->addPerson(ptr[0], ptr[1], stoi(ptr[2]), ptr[3], ptr[4], ptr[5], ptr[6], ptr[7], 0.0);
         std::cout << "\n" << "Your Details " << "\n";
         std::cout << "First Name : " << ptr[0] << "\n";
         std::cout << "Last Name : " << ptr[1] << "\n";
@@ -64,9 +64,14 @@ void PersonLinkedList::deletePerson() {
 
         if (head->username == current_User) {
             Person* temp = head;
-            head = head->next;
+            if(head->next == NULL){head = NULL;}
+            else{
+                head = head->next;
+            }
+            
             delete temp;
             std::cout << "Person deleted successfully.\n";
+            this->saveToCSV("D:/DSA_project/database/list2.csv");
             return;
         }
 
@@ -150,7 +155,7 @@ void PersonLinkedList::saveToCSV(const std::string& filename) {
             outputFile << current->fname << "," << current->lname << ","
                        << current->age << "," << current->id << ","
                        << current->address << "," << current->accountnumber << ","
-                       << current->username << "," << current->password << "\n";
+                       << current->username << "," << current->password << "," << current->amount << "," << "\n";
             current = current->next;
         }
 
@@ -158,7 +163,6 @@ void PersonLinkedList::saveToCSV(const std::string& filename) {
     }
 
 bool PersonLinkedList::findUsername(const std::string& username){
-    this->loadCsvData();
     Person* current = head;
     while (current != nullptr) {
         if (current->username == username) {
@@ -173,6 +177,7 @@ bool PersonLinkedList::verifyPassword(std::string password, std::string username
     Person* current = head;
     while (current != nullptr) {
         if (current->username == username && current->password == password) {
+            current_User = username;
             return true; // Username and password match found
         }
         current = current->next;
@@ -193,6 +198,7 @@ void PersonLinkedList::loadCsvData()
          std::stringstream ss(line);
         std::string fname, lname, id, address, username, accountnumber, password;
         int age;
+        float amount_1;
 
         getline(ss, fname, ',');
         getline(ss, lname, ',');
@@ -203,9 +209,11 @@ void PersonLinkedList::loadCsvData()
         getline(ss, username, ',');
         getline(ss, accountnumber, ',');
         getline(ss, password, ',');
+        ss >> amount_1;
+        ss.ignore(); // Ignore the comma
 
         // Add person to the linked list
-        this->addPerson(fname, lname, age, id, address, username, accountnumber, password);
+        this->addPerson(fname, lname, age, id, address, username, accountnumber, password, amount_1);
     }
 }
 
