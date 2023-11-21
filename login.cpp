@@ -1,4 +1,4 @@
-#include "API.cpp"
+#include "API_v2.h"
 #include "login.h" 
 #include "menu.cpp"
 #include <iostream>
@@ -6,6 +6,7 @@
 #include <string> // for std::string
 
 std::string currentUser = "Bob123";
+PersonLinkedList person2;
 
 // Generalized login function
 void loginPage(int y) {
@@ -18,7 +19,7 @@ void loginPage(int y) {
         std::cout << "Enter your username: ";
         std::cin >> username;
 
-        if (findUsername(username)) {
+        if (person2.findUsername(username)) {
             validUsername = true;
         } else {
             std::cout << "Username not found. Please try again.\n";
@@ -29,9 +30,9 @@ void loginPage(int y) {
         std::cout << "Enter your password: ";
         std::cin >> password;
 
-        if (y == 0 && verifyPassword(password, username)) {
+        if (y == 0 && person2.verifyPassword(password, username)) {
             validPassword = true;
-        } else if (y == 1 && verifyPassword(password,username)) {
+        } else if (y == 1 && person2.verifyPassword(password,username)) {
             validPassword = true;
         } else {
             if (y == 0) {

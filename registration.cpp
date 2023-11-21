@@ -2,8 +2,6 @@
 #include <string>
 #include "registration.h"
 
-
-
 std::string * registration()
 {
     std::string * person = new std::string[7];

@@ -1,26 +1,26 @@
 #include "home.h"
+#include "API_v2.h"
+#include "API_v2.cpp"
 #include "login.cpp"
 #include "about.cpp"
-#include "API.cpp"
 
 #include <iostream>
 #include <limits> // for numeric_limits
 
-using namespace std;
 
 void home() {
     int x;
     do{
-        cout << "1. Registration\n";
-        cout << "2. Log-in\n";
-        cout << "3. About us \n";
-        cout << "Enter your option number :";
-        cin >> x;
+        std::cout << "1. Registration\n";
+        std::cout << "2. Log-in\n";
+        std::cout << "3. About us \n";
+        std::cout << "Enter your option number :";
+        std::cin >> x;
 
         if(x==1)
         {
-            cout<< "Registration\n";
-            registrationProcess();
+            std::cout<< "Registration\n";
+            person2.registrationProcess();
             break;
 
         }
@@ -33,10 +33,15 @@ void home() {
             break;
         }
         else{
-            cout<<"try again,input is not correct\n";
+            std::cout<<"try again,input is not correct\n";
              
         }
 
     }while(x<4 || x>0);
 
+}
+
+int main()
+{
+    perosn2.registrationProcess();
 }

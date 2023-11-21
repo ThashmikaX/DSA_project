@@ -2,8 +2,7 @@
 #include <iostream>
 #include <limits> 
 #include <string>
-using namespace std;
 
 void accountbalancePage(){
-    cout<<"Account Balance is 10000$";
+    std::cout<<"Account Balance is 10000$";
 }
