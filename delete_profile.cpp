@@ -1,5 +1,8 @@
 #include "home.h"
 #include "login.h"
+#include "API_v2.h"
+#include "class.h"
+
 #include <iostream>
 #include <limits> // for numeric_limits
 #include <string> // for string
@@ -19,6 +22,7 @@ void deleteloginPage() {
     cout << "Enter your option; ";
     cin >> x;
     if(x==1){
+        personList1.deletePerson();
         cout<<"Account deletion successful! Goodbye\n";
         break;
     }

@@ -1,7 +1,9 @@
 #include "home.h"
-#include "login.cpp"
-#include "about.cpp"
-#include "API.cpp"
+#include "login.h"
+#include "about.h"
+#include "API_v2.h"
+#include "class.h"
+
 
 #include <iostream>
 #include <limits> // for numeric_limits
@@ -20,7 +22,7 @@ void home() {
         if(x==1)
         {
             cout<< "Registration\n";
-            registrationProcess();
+            personList1.registrationProcess();
             break;
 
         }

@@ -2,36 +2,21 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "login.cpp"
 
-std::string current_User = getCurrentUser();
-//std::string current_User = "Bob123";
+#include "API_v2.h"
+#include "login.h"
+#include "registration.h"
+#include "home.h"
 
+std::string current_User = "";
 
-// Node structure representing a person
-struct Person {
-    std::string fname;
-    std::string lname;
-    int age;
-    std::string id;
-    std::string address;
-    std::string username;
-    std::string accountnumber;
-    std::string password;
-    Person* next;
-};
+PersonLinkedList::PersonLinkedList() : head(nullptr) {
+    this->loadCsvData();
+}
+
 
 // Linked list class
-class PersonLinkedList {
-private:
-    Person* head;
-
-public:
-    // Constructor
-    PersonLinkedList() : head(nullptr) {}
-
-    // Destructor to free memory when the program ends
-    ~PersonLinkedList() {
+PersonLinkedList::~PersonLinkedList() {
         while (head != nullptr) {
             Person* temp = head;
             head = head->next;
@@ -39,11 +24,11 @@ public:
         }
     }
 
-    // Function to add a new person to the list
-    void addPerson(const std::string& fname, const std::string& lname, int age,
+void PersonLinkedList::addPerson(const std::string& fname, const std::string& lname, int age,
                     const std::string& id, const std::string& address, const std::string& username,
-                    const std::string& accountnumber, const std::string& password) {
-        Person* newPerson = new Person{ fname, lname, age, id, address, username, accountnumber, password, nullptr };
+                    const std::string& accountnumber, const std::string& password, float person_amount_1) {
+                        float person_amount = 0.0;
+        Person* newPerson = new Person{ fname, lname, age, id, address, username, accountnumber, password, person_amount, nullptr };
         if (head == nullptr) {
             head = newPerson;
         } else {
@@ -53,8 +38,25 @@ public:
         std::cout << "Person added successfully.\n";
     }
 
-    // Function to delete a person from the list
-    void deletePerson() {
+void PersonLinkedList::registrationProcess()
+    {
+        std::string* ptr = registration();
+        std::cout << typeid(ptr[2]).name();
+        this->addPerson(ptr[0], ptr[1], stoi(ptr[2]), ptr[3], ptr[4], ptr[5], ptr[6], ptr[7], 0.0);
+        std::cout << "\n" << "Your Details " << "\n";
+        std::cout << "First Name : " << ptr[0] << "\n";
+        std::cout << "Last Name : " << ptr[1] << "\n";
+        std::cout << "Age : " << ptr[2] << "\n";
+        std::cout << "ID Number : " << ptr[3] << "\n";
+        std::cout << "Address : " << ptr[4] << "\n";
+        std::cout << "Account Number : " << ptr[5] << "\n";
+        std::cout << "Username : " << ptr[6] << "\n" << "_________________________________" << "\n";
+        std::cout << "Login your account from here\n";
+        this->saveToCSV("D:/DSA_project/database/list2.csv");
+        loginPage(0);
+    }
+
+void PersonLinkedList::deletePerson() {
         if (head == nullptr) {
             std::cout << "List is empty. Cannot delete.\n";
             return;
@@ -62,9 +64,14 @@ public:
 
         if (head->username == current_User) {
             Person* temp = head;
-            head = head->next;
+            if(head->next == NULL){head = NULL;}
+            else{
+                head = head->next;
+            }
+            
             delete temp;
             std::cout << "Person deleted successfully.\n";
+            this->saveToCSV("D:/DSA_project/database/list2.csv");
             return;
         }
 
@@ -81,10 +88,10 @@ public:
             delete temp;
             std::cout << "Person deleted successfully.\n";
         }
+        this->saveToCSV("D:/DSA_project/database/list2.csv");
     }
 
-    // Function to change person properties
-    void changePersonProperties(const std::string& property, const std::string& value) {
+void PersonLinkedList::changePersonProperties(const std::string& property, const std::string& value) {
         Person* current = head;
         while (current != nullptr && current->username != current_User) {
             current = current->next;
@@ -116,8 +123,7 @@ public:
         }
     }
 
-    // Function to display person properties
-    void showPersonProperties() {
+void PersonLinkedList::showPersonProperties() {
         Person* current = head;
         while (current != nullptr && current->username != current_User) {
             current = current->next;
@@ -137,8 +143,7 @@ public:
         }
     }
 
-    // Function to save the updated data to a CSV file
-    void saveToCSV(const std::string& filename) {
+void PersonLinkedList::saveToCSV(const std::string& filename) {
         std::ofstream outputFile(filename);
         if (!outputFile.is_open()) {
             std::cerr << "Error opening file for writing.\n";
@@ -149,31 +154,51 @@ public:
         while (current != nullptr) {
             outputFile << current->fname << "," << current->lname << ","
                        << current->age << "," << current->id << ","
-                       << current->address << "," << current->username << ","
-                       << current->accountnumber << "," << current->password << "\n";
+                       << current->address << "," << current->accountnumber << ","
+                       << current->username << "," << current->password << "," << current->amount << "," << "\n";
             current = current->next;
         }
 
         std::cout << "Data saved to " << filename << " successfully.\n";
     }
-};
 
-int main() {
-    // Create a linked list to store persons
-    PersonLinkedList personList;
+bool PersonLinkedList::findUsername(const std::string& username){
+    Person* current = head;
+    while (current != nullptr) {
+        if (current->username == username) {
+            return true; // Username found
+        }
+        current = current->next;
+    }
+    return false;
+}
 
+bool PersonLinkedList::verifyPassword(std::string password, std::string username){
+    Person* current = head;
+    while (current != nullptr) {
+        if (current->username == username && current->password == password) {
+            current_User = username;
+            return true; // Username and password match found
+        }
+        current = current->next;
+    }
+    return false; // Username and password match not found
+}
+
+void PersonLinkedList::loadCsvData()
+{
     // Read data from CSV file
-    std::ifstream inputFile("data.csv");
+    std::ifstream inputFile("D:/DSA_project/database/list2.csv");
     if (!inputFile.is_open()) {
         std::cerr << "Error opening file.\n";
-        return 1;
     }
 
     std::string line;
     while (getline(inputFile, line)) {
-        std::stringstream ss(line);
+         std::stringstream ss(line);
         std::string fname, lname, id, address, username, accountnumber, password;
         int age;
+        float amount_1;
 
         getline(ss, fname, ',');
         getline(ss, lname, ',');
@@ -184,25 +209,17 @@ int main() {
         getline(ss, username, ',');
         getline(ss, accountnumber, ',');
         getline(ss, password, ',');
+        ss >> amount_1;
+        ss.ignore(); // Ignore the comma
 
         // Add person to the linked list
-        personList.addPerson(fname, lname, age, id, address, username, accountnumber, password);
+        this->addPerson(fname, lname, age, id, address, username, accountnumber, password, amount_1);
     }
-
-    // Example usage of functions
-    //personList.showPersonProperties(); // Display properties of person with username "JohnDoe"
-    //personList.deletePerson(); // Delete person with username "AliceSmith"
-
-    // // Add a new person
-    personList.addPerson("Bob", "Johnson", 25, "B123456", "123 Main St", "Bob123", "789012345", "password123");
-
-    // // Change properties of a person
-    personList.changePersonProperties("age", "45");
-    personList.changePersonProperties("address", "456 Oak St");
-
-    // // Save updated data to CSV file
-    personList.saveToCSV("data.csv");
-    std::cout << "test 1";
-
-    return 0;
 }
+
+//  int main() {
+//     PersonLinkedList p1;
+//     p1.loadCsvData();
+//     p1.addPerson("sp","ss",10,"ss","ss","ss","ss", "ss");
+//     p1.saveToCSV("data1.csv");
+//  }
