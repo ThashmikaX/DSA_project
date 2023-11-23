@@ -123,7 +123,7 @@ void PersonLinkedList::changePersonProperties(const std::string& property, const
         }
     }
 
-void PersonLinkedList::showPersonProperties() {
+void PersonLinkedList::showAccountBalance() {
         Person* current = head;
         while (current != nullptr && current->username != current_User) {
             current = current->next;
@@ -132,14 +132,7 @@ void PersonLinkedList::showPersonProperties() {
         if (current == nullptr) {
             std::cout << "Person not found.\n";
         } else {
-            std::cout << "Username: " << current->username << "\n";
-            std::cout << "First Name: " << current->fname << "\n";
-            std::cout << "Last Name: " << current->lname << "\n";
-            std::cout << "Age: " << current->age << "\n";
-            std::cout << "ID: " << current->id << "\n";
-            std::cout << "Address: " << current->address << "\n";
-            std::cout << "Account Number: " << current->accountnumber << "\n";
-            std::cout << "Password: " << current->password << "\n";
+            std::cout << "Username: " << current->amount << "\n";
         }
     }
 

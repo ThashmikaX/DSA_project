@@ -40,7 +40,7 @@ public:
     void changePersonProperties(const std::string& property, const std::string& value);
 
     // Function to display person properties
-    void showPersonProperties();
+    void showAccountBalance();
 
     // Function to save the updated data to a CSV file
     void saveToCSV(const std::string& filename);
