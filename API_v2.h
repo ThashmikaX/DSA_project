@@ -8,8 +8,8 @@ struct Person {
     int age;
     std::string id;
     std::string address;
-    std::string username;
     std::string accountnumber;
+    std::string username;
     std::string password;
     float amount;
     Person* next;
@@ -48,6 +48,7 @@ public:
     bool findUsername(const std::string& username);
     bool verifyPassword(std::string password1, std::string username1);
     void loadCsvData();
+    bool updateBalance(const std::string toAccountNum, float balance);
 
 
 };

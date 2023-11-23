@@ -1,10 +1,6 @@
-#include "home.h" 
-
-
-using namespace std;
+#include "home.h"
 
 int main()
 {
     home();
-    
 }

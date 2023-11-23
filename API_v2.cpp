@@ -8,8 +8,7 @@
 #include "registration.h"
 #include "home.h"
 
-std::string current_User = "";
-
+std::string current_User = "", database_path = "D:/DSA_project/database/list2.csv";
 PersonLinkedList::PersonLinkedList() : head(nullptr) {
     this->loadCsvData();
 }
@@ -25,10 +24,11 @@ PersonLinkedList::~PersonLinkedList() {
     }
 
 void PersonLinkedList::addPerson(const std::string& fname, const std::string& lname, int age,
-                    const std::string& id, const std::string& address, const std::string& username,
-                    const std::string& accountnumber, const std::string& password, float person_amount_1) {
-                        float person_amount = 0.0;
-        Person* newPerson = new Person{ fname, lname, age, id, address, username, accountnumber, password, person_amount, nullptr };
+                                const std::string& id, const std::string& address,
+                                const std::string& accountnumber, const std::string& username,
+                                const std::string& password, float person_amount_1) {
+                        //float person_amount = 0.0;
+        Person* newPerson = new Person{ fname, lname, age, id, address,  accountnumber, username, password, person_amount_1, nullptr };
         if (head == nullptr) {
             head = newPerson;
         } else {
@@ -155,7 +155,7 @@ void PersonLinkedList::saveToCSV(const std::string& filename) {
             outputFile << current->fname << "," << current->lname << ","
                        << current->age << "," << current->id << ","
                        << current->address << "," << current->accountnumber << ","
-                       << current->username << "," << current->password << "," << current->amount << "," << "\n";
+                       << current->username << "," << current->password << "," << std::to_string(current->amount) << "," << "\n";
             current = current->next;
         }
 
@@ -217,9 +217,35 @@ void PersonLinkedList::loadCsvData()
     }
 }
 
+bool PersonLinkedList::updateBalance(const std::string toAccountNum, float balance)
+{
+    Person* current = head;
+    if (current == nullptr) return false;
+    while(current != nullptr)
+    {
+        if(current->accountnumber == toAccountNum)
+        {
+            current->amount += balance;
+            current = head;
+            while(current != nullptr)
+            {
+                if(current->username == current_User)
+                {
+                    current->amount -= balance;
+                    this->saveToCSV(database_path);
+                    return true;
+                }
+                current = current->next;
+            }
+        }
+        current = current->next;
+    }
+    return false;
+}
+
 //  int main() {
 //     PersonLinkedList p1;
-//     p1.loadCsvData();
-//     p1.addPerson("sp","ss",10,"ss","ss","ss","ss", "ss");
-//     p1.saveToCSV("data1.csv");
+//     p1.addPerson("sp","ss",10,"ss","ss","acc2", "username2", "password2", 500.0);
+//     //std::cout << p1.updateBalance("5800", 5000.0);
+//     p1.saveToCSV(database_path);
 //  }
