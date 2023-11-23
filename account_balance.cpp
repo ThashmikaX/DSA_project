@@ -2,8 +2,12 @@
 #include <iostream>
 #include <limits> 
 #include <string>
-using namespace std;
+#include "class.h"
+#include "API_v2.h"
+
 
 void accountbalancePage(){
-    cout<<"Account Balance is 10000$";
+    personList1.showAccountBalance();
+    
+    
 }

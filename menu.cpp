@@ -27,6 +27,7 @@ void menu() {
 
         }
         else if (y == 2) {
+            transferPage();
         
             break;
         }

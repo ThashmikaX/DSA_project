@@ -5,5 +5,7 @@
 using namespace std;
 
 void transferPage(){
+    int amount;
+    
     cout<<"Account Balance is 10000$";
 }
