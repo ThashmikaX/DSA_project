@@ -7,7 +7,8 @@
 using namespace std;
 
 void transferPage(){
-    
+    bool y = true;
+    while(y){
     float amount;
     string x;
     cout << "------Enter Acount Number-------\n";
@@ -16,6 +17,7 @@ void transferPage(){
     amount =0.0;
     if(!personList1.updateBalance(x,amount)){
         cout << "Invalid Account number\n";
+        y= true;
 
     }
     else{
@@ -24,6 +26,8 @@ void transferPage(){
         personList1.updateBalance(x,amount);
         cout << "Succefully Transfer\n";
         cout << "-----Thanks for using !--------\n";
+        y=false;
+    }
     }
 
    
