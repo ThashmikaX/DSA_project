@@ -13,8 +13,6 @@ PersonLinkedList::PersonLinkedList() : head(nullptr) {
     this->loadCsvData();
 }
 
-
-// Linked list class
 PersonLinkedList::~PersonLinkedList() {
         while (head != nullptr) {
             Person* temp = head;
@@ -52,7 +50,7 @@ void PersonLinkedList::registrationProcess()
         std::cout << "Account Number : " << ptr[5] << "\n";
         std::cout << "Username : " << ptr[6] << "\n" << "_________________________________" << "\n";
         std::cout << "Login your account from here\n";
-        this->saveToCSV("D:/DSA_project/database/list2.csv");
+        this->saveToCSV(database_path);
         loginPage(0);
     }
 
@@ -71,7 +69,7 @@ void PersonLinkedList::deletePerson() {
             
             delete temp;
             std::cout << "Person deleted successfully.\n";
-            this->saveToCSV("D:/DSA_project/database/list2.csv");
+            this->saveToCSV(database_path);
             return;
         }
 
@@ -88,7 +86,7 @@ void PersonLinkedList::deletePerson() {
             delete temp;
             std::cout << "Person deleted successfully.\n";
         }
-        this->saveToCSV("D:/DSA_project/database/list2.csv");
+        this->saveToCSV(database_path);
     }
 
 void PersonLinkedList::changePersonProperties(const std::string& property, const std::string& value) {
@@ -132,7 +130,7 @@ void PersonLinkedList::showAccountBalance() {
         if (current == nullptr) {
             std::cout << "Person not found.\n";
         } else {
-            std::cout << "Username: " << current->amount << "\n";
+            std::cout << "\nAccount balance is : Rs." << current->amount << "\n";
         }
     }
 
@@ -210,7 +208,7 @@ void PersonLinkedList::loadCsvData()
     }
 }
 
-bool PersonLinkedList::updateBalance(const std::string toAccountNum, float balance)
+int PersonLinkedList::updateBalance(const std::string toAccountNum, float balance)
 {
     Person* current = head;
     if (current == nullptr) return false;

@@ -29,11 +29,5 @@ void transferPage(){
         y=false;
     }
     }
-
-   
-   
-    
-
-
-    cout<<"Account Balance is 10000$";
+    personList1.showAccountBalance();
 }

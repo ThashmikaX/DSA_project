@@ -48,7 +48,10 @@ public:
     bool findUsername(const std::string& username);
     bool verifyPassword(std::string password1, std::string username1);
     void loadCsvData();
-    bool updateBalance(const std::string toAccountNum, float balance);
+    int updateBalance(const std::string toAccountNum, float balance);
+
+    void encryptAndSaveToCSV();
+    void decryptAndSaveToCSV();
 
 
 };
