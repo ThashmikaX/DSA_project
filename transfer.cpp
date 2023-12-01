@@ -27,6 +27,7 @@ void transferPage(){
 
     }
     else {
+        while(true){
         cout << "Enter Amount : ";
         cin >> amount;
         if(3==personList1.updateBalance(x,amount)){
@@ -44,7 +45,7 @@ void transferPage(){
                     menu();
 
                 }else{
-                    break;
+                    
                 }
             }
             }
@@ -54,8 +55,26 @@ void transferPage(){
         else if (4==personList1.updateBalance(x,amount)){
             cout << "Succefully Transfer \n ";
             cout << "--------Thanks for using ---------\n";
-            y=false;
+            while(true){
+            int z;
+            cout << "\nDo you continue?\n";
+            cout <<"1.Yes\n";
+            cout <<"2.No\n";
+            cout <<"Select your option: ";
+            cin >>z;
+            if(z<3 || z>0){
+                if(z==1){
+                    menu();
+
+                }else{
+                    break;
+                    
+                }
+            }
+            }
+            
         }
+    }
         
     }
     }
