@@ -8,6 +8,8 @@
 #include "registration.h"
 #include "home.h"
 
+#define MINIMUM_AMOUNT 100.0
+
 std::string current_User = "", database_path = "D:/DSA_project/database/list2.csv";
 PersonLinkedList::PersonLinkedList() : head(nullptr) {
     this->loadCsvData();
@@ -212,6 +214,15 @@ int PersonLinkedList::updateBalance(const std::string toAccountNum, float balanc
 {
     Person* current = head;
     if (current == nullptr) return false;
+
+    //looping for find if user entered their own account number. if return 1.
+    while (current != nullptr) {
+        if (current->username == current_User) {
+            if(current->accountnumber == toAccountNum){return 1;}
+        }
+        current = current->next;
+    }
+
     while(current != nullptr)
     {
         if(current->accountnumber == toAccountNum)
@@ -223,15 +234,18 @@ int PersonLinkedList::updateBalance(const std::string toAccountNum, float balanc
                 if(current->username == current_User)
                 {
                     current->amount -= balance;
+                    //if user balace will be less than zero then return 3.
+                    if(current->amount < MINIMUM_AMOUNT) return 3;
                     this->saveToCSV(database_path);
-                    return true;
+                    return 4;   //succsessfull transfer
                 }
                 current = current->next;
             }
         }
         current = current->next;
     }
-    return false;
+    //if we cant find the account number. return 2.
+    return 2;
 }
 
 //  int main() {
