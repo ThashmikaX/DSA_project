@@ -4,6 +4,7 @@
 #include <string>
 #include "API_v2.h"
 #include "class.h"
+#include "menu.h"
 using namespace std;
 
 void transferPage(){
@@ -15,19 +16,48 @@ void transferPage(){
     cout <<"To : ";
     cin >> x;
     amount =0.0;
-    if(!personList1.updateBalance(x,amount)){
+    if(1==personList1.updateBalance(x,amount)){
         cout << "Invalid Account number\n";
         y= true;
 
     }
-    else{
+    else if(2==personList1.updateBalance(x,amount)){
+        cout << "invalid Account Number\n";
+        y=true;
+
+    }
+    else {
         cout << "Enter Amount : ";
         cin >> amount;
-        personList1.updateBalance(x,amount);
-        cout << "Succefully Transfer\n";
-        cout << "-----Thanks for using !--------\n";
-        y=false;
+        if(3==personList1.updateBalance(x,amount)){
+            int z;
+            cout<< "Account balance is less than zero\n";
+            cout << "------------------------------------------------\n";
+            while(true){
+            cout << "\nDo you continue?\n";
+            cout <<"1.Yes\n";
+            cout <<"2.No\n";
+            cout <<"Select your option: ";
+            cin >>z;
+            if(z<3 || z>0){
+                if(z==1){
+                    menu();
+
+                }else{
+                    break;
+                }
+            }
+            }
+            
+
+        }
+        else if (4==personList1.updateBalance(x,amount)){
+            cout << "Succefully Transfer \n ";
+            cout << "--------Thanks for using ---------\n";
+            y=false;
+        }
+        
     }
     }
-    personList1.showAccountBalance();
+    
 }
