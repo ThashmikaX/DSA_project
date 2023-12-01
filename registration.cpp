@@ -6,6 +6,7 @@ std::string * registration()
 {
     std::string * person = new std::string[8];
     std::string confirm_p;
+    int age;
 
     std::cout << "**Welcome to the Banking App!**" << std::endl;
     std::cout << "please enter your details" << std::endl;
@@ -13,8 +14,21 @@ std::string * registration()
         std::cin >> person[0];
         std::cout << "Last_Name : ";
         std::cin >> person[1];
-        std::cout << "age : ";
-        std::cin >> person[2];
+        int integerValue;
+        while (true) {
+        // Prompt the user for input
+        std::cout << "Age: ";
+        std::getline(std::cin, person[2]);
+        // Attempt to convert the input to an integer
+        try {
+            integerValue = std::stoi(person[2]);
+            break;  // If successful, exit the loop
+        } catch (const std::invalid_argument& e) {
+            std::cerr << "Invalid input. Please enter a valid integer." << std::endl;
+        } catch (const std::out_of_range& e) {
+            std::cerr << "Input out of range. Please enter a smaller integer." << std::endl;
+            }
+        }
         std::cout << "NIC/Passport No : ";
         std::cin >> person[3];
         std::cout << "Address : ";
