@@ -3,6 +3,7 @@
 #include "settings.h"
 #include <iostream>
 #include <limits> // for numeric_limits
+#include "colour.cpp"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ void settingsPage() {
             break;
         }
         else{
-            cout<<"try again,input is not correct\n";
+            cout<<RED<<"try again,input is not correct"<<RESET<<endl;
              
         }
 

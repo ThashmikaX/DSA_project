@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "registration.h"
+#include "colour.cpp"
 
 std::string * registration()
 {
@@ -24,9 +25,9 @@ std::string * registration()
             integerValue = std::stoi(person[2]);
             break;  // If successful, exit the loop
         } catch (const std::invalid_argument& e) {
-            std::cerr << "Invalid input. Please enter a valid integer." << std::endl;
+            std::cerr <<RED<< "Invalid input. Please enter a valid integer." <<RESET<< std::endl;
         } catch (const std::out_of_range& e) {
-            std::cerr << "Input out of range. Please enter a smaller integer." << std::endl;
+            std::cerr <<RED <<"Input out of range. Please enter a smaller integer." << RESET<<std::endl;
             }
         }
         std::cout << "NIC/Passport No : ";
@@ -61,12 +62,12 @@ std::string * registration()
         std::cin >> confirm_p;
 
         if (person[7] != confirm_p) {
-            std::cout << "Password does not match. Please try again." << std::endl;
+            std::cout << RED<<"Password does not match. Please try again." << RESET<<std::endl;
         }
 
     } while (person[7] != confirm_p);
 
-        std::cout << "\n" << "Signup successful! Thank you for joining the Banking App." << std::endl;
+        std::cout << "\n" <<GREEN<< "Signup successful! Thank you for joining the Banking App." << RESET<<std::endl;
 
     return person;
 }

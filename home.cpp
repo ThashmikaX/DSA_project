@@ -3,6 +3,7 @@
 #include "about.h"
 #include "API_v2.h"
 #include "class.h"
+#include "colour.cpp"
 
 
 #include <iostream>
@@ -35,7 +36,7 @@ void home() {
             break;
         }
         else{
-            cout<<"try again,input is not correct\n";
+            cout<<RED<<"try again,input is not correct"<<RESET<<endl;
              
         }
 

@@ -5,6 +5,7 @@
 #include "API_v2.h"
 #include "class.h"
 #include "menu.h"
+#include "colour.cpp"
 using namespace std;
 
 void transferPage(){
@@ -21,7 +22,7 @@ void transferPage(){
 
     }
     else if(2==personList1.updateBalance(x,0.0)){
-        cout << "invalid Account Number\n";
+        cout <<RED <<"invalid Account Number"<<RESET<<endl;
         y=true;
 
     }
@@ -54,7 +55,7 @@ void transferPage(){
 
         }
         else if (4==check){
-            cout << "Succefully Transfer \n ";
+            cout <<RED<< "Succefully Transfer "<< "Rs " <<amount<<".00 "<<"To "<<x<<RESET<<endl;
             cout << "--------Thanks for using ---------\n";
             while(true){
             int z;
