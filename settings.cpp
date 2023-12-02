@@ -1,4 +1,5 @@
 #include "delete_profile.h"
+#include "change_user_details.h"
 #include "settings.h"
 #include <iostream>
 #include <limits> // for numeric_limits

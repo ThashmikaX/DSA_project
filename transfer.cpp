@@ -15,13 +15,12 @@ void transferPage(){
     cout << "------Enter Acount Number-------\n";
     cout <<"To : ";
     cin >> x;
-    amount =0.0;
-    if(1==personList1.updateBalance(x,amount)){
-        cout << "Invalid Account number\n";
+    if(1==personList1.updateBalance(x,0.0)){
+        cout << "You Enterd your own account number\n";
         y= true;
 
     }
-    else if(2==personList1.updateBalance(x,amount)){
+    else if(2==personList1.updateBalance(x,0.0)){
         cout << "invalid Account Number\n";
         y=true;
 
@@ -30,7 +29,8 @@ void transferPage(){
         while(true){
         cout << "Enter Amount : ";
         cin >> amount;
-        if(3==personList1.updateBalance(x,amount)){
+        int check = personList1.updateBalance(x,amount);
+        if(3==check){
             int z;
             cout<< "Account balance is less than zero\n";
             cout << "------------------------------------------------\n";
@@ -45,6 +45,7 @@ void transferPage(){
                     menu();
 
                 }else{
+                    break;
                     
                 }
             }
@@ -52,7 +53,7 @@ void transferPage(){
             
 
         }
-        else if (4==personList1.updateBalance(x,amount)){
+        else if (4==check){
             cout << "Succefully Transfer \n ";
             cout << "--------Thanks for using ---------\n";
             while(true){

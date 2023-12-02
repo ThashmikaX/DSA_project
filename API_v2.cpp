@@ -213,39 +213,66 @@ void PersonLinkedList::loadCsvData()
 int PersonLinkedList::updateBalance(const std::string toAccountNum, float balance)
 {
     Person* current = head;
-    if (current == nullptr) return false;
+    if (current == nullptr) return 2;
+    std::string acc;
 
-    //looping for find if user entered their own account number. if return 1.
-    while (current != nullptr) {
+    if(balance == 0.0)
+    {
+        //looping for find if user entered their own account number. if return 1.
+        while (current != nullptr) {
         if (current->username == current_User) {
-            if(current->accountnumber == toAccountNum){return 1;}
+            acc = current->accountnumber;
         }
         current = current->next;
+        }
+        if(acc == toAccountNum){
+        return 1;
+        }
+
+        //looping for find if user entered acc number is in our database. if not return 2.
+        current = head;
+        int result = 0;
+        while(current != nullptr) {
+        if (current->accountnumber == toAccountNum) {
+            result = 1;
+        }
+        current = current->next;
+        }
+        if(result == 0){return 2;}
+
     }
 
+    current = head;
     while(current != nullptr)
-    {
+    {  
         if(current->accountnumber == toAccountNum)
         {
             current->amount += balance;
-            current = head;
-            while(current != nullptr)
+            Person* current1 = head;
+            while(current1 != nullptr)
             {
-                if(current->username == current_User)
+                if(current1->username == current_User)
                 {
-                    current->amount -= balance;
+                    current1->amount -= balance;
                     //if user balace will be less than zero then return 3.
-                    if(current->amount < MINIMUM_AMOUNT) return 3;
-                    this->saveToCSV(database_path);
-                    return 4;   //succsessfull transfer
+                    if(current1->amount < MINIMUM_AMOUNT)
+                    {
+                        current1->amount += balance;
+                        current->amount -= balance;
+                        return 3;
+                    }
+                    if(balance != 0.0)
+                    {
+                        this->saveToCSV(database_path);
+                        return 4;   //succsessfull transfer
+                    }
                 }
-                current = current->next;
+                current1 = current1->next;
             }
         }
         current = current->next;
     }
     //if we cant find the account number. return 2.
-    return 2;
 }
 
 //  int main() {
