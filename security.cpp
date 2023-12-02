@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "API_v2.h"
+#include "colour.cpp"
 
 using namespace std;
 
@@ -9,7 +10,7 @@ using namespace std;
 void PersonLinkedList::encryptAndSaveToCSV() {
     ofstream outputFile("D:/DSA_project/database/list2.csv");
     if (!outputFile.is_open()) {
-        cerr << "Error opening file for writing.\n";
+        cerr <<RED<< "Error opening file for writing."<<RESET<<endl;
         return;
     }
 
@@ -67,7 +68,7 @@ void PersonLinkedList::encryptAndSaveToCSV() {
 void PersonLinkedList::decryptAndSaveToCSV() {
     ofstream outputFile("D:/DSA_project/database/list2.csv");
     if (!outputFile.is_open()) {
-        cerr << "Error opening file for writing.\n";
+        cerr <<RED<< "Error opening file for writing."<<RESET<<endl;
         return;
     }
 

@@ -33,7 +33,7 @@ void transferPage(){
         int check = personList1.updateBalance(x,amount);
         if(3==check){
             int z;
-            cout<< "Account balance is less than zero\n";
+            cout<<RED<< "Account balance is less than zero"<<RESET<<endl;
             cout << "------------------------------------------------\n";
             while(true){
             cout << "\nDo you continue?\n";
@@ -55,8 +55,8 @@ void transferPage(){
 
         }
         else if (4==check){
-            cout <<RED<< "Succefully Transfer "<< "Rs " <<amount<<".00 "<<"To "<<x<<RESET<<endl;
-            cout << "--------Thanks for using ---------\n";
+            cout <<GREEN<< "Succefully Transfer "<< "Rs " <<amount<<".00 "<<"To "<<x<<RESET<<endl;
+            cout <<GREEN<< "--------Thanks for using ---------"<<RESET<<endl;
             while(true){
             int z;
             cout << "\nDo you continue?\n";

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <limits> // for numeric_limits
 #include "colour.cpp"
+#include "change_user_details.h"
+#include "change_password.h"
 
 using namespace std;
 
@@ -23,11 +25,11 @@ void settingsPage() {
 
         }
         else if(x==2){
-             
+            changePersonProperty();
             break;
         }
         else if(x==3){
-             
+            changePasswordd();
             break;
         }
         else{

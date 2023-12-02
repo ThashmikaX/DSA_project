@@ -2,6 +2,7 @@
 #include "login.h"
 #include "API_v2.h"
 #include "class.h"
+#include "colour.cpp"
 
 #include <iostream>
 #include <limits> // for numeric_limits
@@ -23,7 +24,7 @@ void deleteloginPage() {
     cin >> x;
     if(x==1){
         personList1.deletePerson();
-        cout<<"Account deletion successful! Goodbye\n";
+        cout<<GREEN<<"Account deletion successful! Goodbye"<<RESET<<endl;
         break;
     }
     else if(x==2){
@@ -33,7 +34,7 @@ void deleteloginPage() {
         break;
     }
     else{
-        cout<<"try again,input is not correct\n";
+        cout<<RED<<"try again,input is not correct"<<RESET<<endl;
     }
 
     }

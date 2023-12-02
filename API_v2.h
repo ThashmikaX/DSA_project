@@ -42,18 +42,17 @@ public:
     // Function to display person properties
     void showAccountBalance();
 
+    void loadCsvData();
     // Function to save the updated data to a CSV file
     void saveToCSV(const std::string& filename);
 
     bool findUsername(const std::string& username);
     bool verifyPassword(std::string password1, std::string username1);
-    void loadCsvData();
+
     int updateBalance(const std::string toAccountNum, float balance);
 
     void encryptAndSaveToCSV();
     void decryptAndSaveToCSV();
-
-
 };
 
 

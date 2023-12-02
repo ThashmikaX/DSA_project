@@ -3,6 +3,7 @@
 #include "menu.h"
 #include "home.h"
 #include "class.h"
+#include "colour.cpp"
 
 #include <iostream>
 #include <limits> // for numeric_limits
@@ -24,7 +25,7 @@ void loginPage(int y) {
         if (personList1.findUsername(username)) {
             validUsername = true;
         } else {
-            std::cout << "Username not found. Please try again.\n";
+            std::cout <<RED<< "Username not found. Please try again."<<RESET<<std::endl;
         }
     }
 
@@ -38,17 +39,17 @@ void loginPage(int y) {
             validPassword = true;
         } else {
             if (y == 0) {
-                std::cout << "Incorrect password. Please try again.\n";
+                std::cout <<RED<< "Incorrect password. Please try again."<<RESET<<std::endl;
             } 
             else if (y == 1) {
-                std::cout << "Invalid password. Account deletion failed.\n";
+                std::cout <<RED<< "Invalid password. Account deletion failed."<<RESET<<std::endl;
             }
         }
     }
 
 
     if (y == 0) {
-        std::cout << "Login successful! Welcome, " << username << "!\n";
+        std::cout <<GREEN<< "Login successful! Welcome, " << username <<RESET<<std::endl;
         menu();
     } else if (y == 1) {
         std::cout << "_______________________________\n";

@@ -7,6 +7,8 @@
 #include "login.h"
 #include "registration.h"
 #include "home.h"
+#include "colour.cpp"
+
 
 #define MINIMUM_AMOUNT 100.0
 
@@ -40,9 +42,11 @@ void PersonLinkedList::addPerson(const std::string& fname, const std::string& ln
 
 void PersonLinkedList::registrationProcess()
     {
-        std::string* ptr = registration();
+        std::string* ptr = registration();  //in the registration.cpp
         std::cout << typeid(ptr[2]).name();
-        this->addPerson(ptr[0], ptr[1], stoi(ptr[2]), ptr[3], ptr[4], ptr[5], ptr[6], ptr[7], 0.0);
+        this->addPerson(ptr[0], ptr[1], stoi(ptr[2]), ptr[3], ptr[4], ptr[5], ptr[6], ptr[7], 5000.0);
+
+        //show details after regitration
         std::cout << "\n" << "Your Details " << "\n";
         std::cout << "First Name : " << ptr[0] << "\n";
         std::cout << "Last Name : " << ptr[1] << "\n";
@@ -58,7 +62,7 @@ void PersonLinkedList::registrationProcess()
 
 void PersonLinkedList::deletePerson() {
         if (head == nullptr) {
-            std::cout << "List is empty. Cannot delete.\n";
+            std::cout <<RED<< "List is empty. Cannot delete."<<RESET<<std::endl;
             return;
         }
 
@@ -70,7 +74,7 @@ void PersonLinkedList::deletePerson() {
             }
             
             delete temp;
-            std::cout << "Person deleted successfully.\n";
+            std::cout <<GREEN<< "Person deleted successfully."<<RESET<<std::endl;
             this->saveToCSV(database_path);
             return;
         }
@@ -81,12 +85,12 @@ void PersonLinkedList::deletePerson() {
         }
 
         if (current->next == nullptr) {
-            std::cout << "Person not found.\n";
+            std::cout <<RED<< "Person not found."<<RESET<<std::endl;
         } else {
             Person* temp = current->next;
             current->next = current->next->next;
             delete temp;
-            std::cout << "Person deleted successfully.\n";
+            std::cout <<RED<< "Person deleted successfully."<<RESET<<std::endl;
         }
         this->saveToCSV(database_path);
     }
@@ -98,7 +102,7 @@ void PersonLinkedList::changePersonProperties(const std::string& property, const
         }
 
         if (current == nullptr) {
-            std::cout << "Person not found.\n";
+            std::cout <<RED<< "Person not found."<<RESET<<std::endl;
         } else {
             if (property == "fname") {
                 current->fname = value;
@@ -115,11 +119,11 @@ void PersonLinkedList::changePersonProperties(const std::string& property, const
             } else if (property == "password") {
                 current->password = value;
             } else {
-                std::cout << "Invalid property.\n";
+                std::cout <<RED<< "Invalid property."<<RESET<<std::endl;
                 return;
             }
-
-            std::cout << "Person properties changed successfully.\n";
+            std::cout <<GREEN<< "Person properties changed successfully."<<RESET<<std::endl;
+            this->saveToCSV(database_path);
         }
     }
 
@@ -132,7 +136,7 @@ void PersonLinkedList::showAccountBalance() {
         if (current == nullptr) {
             std::cout << "Person not found.\n";
         } else {
-            std::cout << "\nAccount balance is : Rs." << current->amount << "\n";
+            std::cout << "\nAccount balance is : Rs." <<RED<< current->amount << RESET<<std::endl;
         }
     }
 
