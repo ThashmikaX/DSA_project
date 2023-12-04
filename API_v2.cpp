@@ -9,15 +9,24 @@
 #include "home.h"
 #include "colour.cpp"
 
-
 #define MINIMUM_AMOUNT 100.0
+bool securityStatus = 1;
 
 std::string current_User = "", database_path = "D:/DSA_project/database/list2.csv";
 PersonLinkedList::PersonLinkedList() : head(nullptr) {
     this->loadCsvData();
+    if(securityStatus == 1)
+    {
+        this->decryptAndSaveToCSV();
+        this->~PersonLinkedList();
+        this->loadCsvData();
+        securityStatus = 0;
+    }
+
 }
 
 PersonLinkedList::~PersonLinkedList() {
+    std::cout << "\nLinked list data cleared\n";
         while (head != nullptr) {
             Person* temp = head;
             head = head->next;
@@ -57,6 +66,9 @@ void PersonLinkedList::registrationProcess()
         std::cout << "Username : " << ptr[6] << "\n" << "_________________________________" << "\n";
         std::cout << "Login your account from here\n";
         this->saveToCSV(database_path);
+        this->~PersonLinkedList();
+        this->loadCsvData();
+        this->encryptAndSaveToCSV();
         loginPage(0);
     }
 
@@ -76,6 +88,9 @@ void PersonLinkedList::deletePerson() {
             delete temp;
             std::cout <<GREEN<< "Person deleted successfully."<<RESET<<std::endl;
             this->saveToCSV(database_path);
+            this->~PersonLinkedList();
+            this->loadCsvData();
+            this->encryptAndSaveToCSV();
             return;
         }
 
@@ -93,6 +108,9 @@ void PersonLinkedList::deletePerson() {
             std::cout <<RED<< "Person deleted successfully."<<RESET<<std::endl;
         }
         this->saveToCSV(database_path);
+        this->~PersonLinkedList();
+        this->loadCsvData();
+        this->encryptAndSaveToCSV();
     }
 
 void PersonLinkedList::changePersonProperties(const std::string& property, const std::string& value) {
@@ -124,6 +142,9 @@ void PersonLinkedList::changePersonProperties(const std::string& property, const
             }
             std::cout <<GREEN<< "Person properties changed successfully."<<RESET<<std::endl;
             this->saveToCSV(database_path);
+            this->~PersonLinkedList();
+            this->loadCsvData();
+            this->encryptAndSaveToCSV();
         }
     }
 
@@ -268,6 +289,9 @@ int PersonLinkedList::updateBalance(const std::string toAccountNum, float balanc
                     if(balance != 0.0)
                     {
                         this->saveToCSV(database_path);
+                        this->~PersonLinkedList();
+                        this->loadCsvData();
+                        this->encryptAndSaveToCSV();
                         return 4;   //succsessfull transfer
                     }
                 }
