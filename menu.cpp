@@ -3,6 +3,7 @@
 #include "menu.h"
 #include "transfer.h"
 #include "settings.h"
+#include "colour.cpp"
 
 
 using namespace std;
@@ -27,6 +28,7 @@ void menu() {
 
         }
         else if (y == 2) {
+            transferPage();
         
             break;
         }
@@ -34,7 +36,7 @@ void menu() {
             settingsPage();
             break;
         }else{
-            cout<< "try again,input is not correct\n";
+            cout<<RED<<"try again,input is not correct"<<RESET<<endl;
 
         }
       

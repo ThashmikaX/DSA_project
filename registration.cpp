@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
 #include "registration.h"
+#include "colour.cpp"
 
 std::string * registration()
 {
     std::string * person = new std::string[8];
     std::string confirm_p;
+    int age;
 
     std::cout << "**Welcome to the Banking App!**" << std::endl;
     std::cout << "please enter your details" << std::endl;
@@ -13,8 +15,7 @@ std::string * registration()
         std::cin >> person[0];
         std::cout << "Last_Name : ";
         std::cin >> person[1];
-        std::cout << "age : ";
-        std::cin >> person[2];
+        std::cout << "Age: ";
         std::cout << "NIC/Passport No : ";
         std::cin >> person[3];
         std::cout << "Address : ";
@@ -47,12 +48,12 @@ std::string * registration()
         std::cin >> confirm_p;
 
         if (person[7] != confirm_p) {
-            std::cout << "Password does not match. Please try again." << std::endl;
+            std::cout << RED<<"Password does not match. Please try again." << RESET<<std::endl;
         }
 
     } while (person[7] != confirm_p);
 
-        std::cout << "\n" << "Signup successful! Thank you for joining the Banking App." << std::endl;
+        std::cout << "\n" <<GREEN<< "Signup successful! Thank you for joining the Banking App." << RESET<<std::endl;
 
     return person;
 }

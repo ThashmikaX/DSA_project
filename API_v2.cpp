@@ -7,16 +7,26 @@
 #include "login.h"
 #include "registration.h"
 #include "home.h"
+#include "colour.cpp"
 
-std::string current_User = "";
+#define MINIMUM_AMOUNT 100.0
+bool securityStatus = 1;
 
+std::string current_User = "", database_path = "D:/DSA_project/database/list2.csv";
 PersonLinkedList::PersonLinkedList() : head(nullptr) {
     this->loadCsvData();
+    if(securityStatus == 1)
+    {
+        this->decryptAndSaveToCSV();
+        this->~PersonLinkedList();
+        this->loadCsvData();
+        securityStatus = 0;
+    }
+
 }
 
-
-// Linked list class
 PersonLinkedList::~PersonLinkedList() {
+    
         while (head != nullptr) {
             Person* temp = head;
             head = head->next;
@@ -25,24 +35,27 @@ PersonLinkedList::~PersonLinkedList() {
     }
 
 void PersonLinkedList::addPerson(const std::string& fname, const std::string& lname, int age,
-                    const std::string& id, const std::string& address, const std::string& username,
-                    const std::string& accountnumber, const std::string& password, float person_amount_1) {
-                        float person_amount = 0.0;
-        Person* newPerson = new Person{ fname, lname, age, id, address, username, accountnumber, password, person_amount, nullptr };
+                                const std::string& id, const std::string& address,
+                                const std::string& accountnumber, const std::string& username,
+                                const std::string& password, float person_amount_1) {
+                        
+        Person* newPerson = new Person{ fname, lname, age, id, address,  accountnumber, username, password, person_amount_1, nullptr };
         if (head == nullptr) {
             head = newPerson;
         } else {
             newPerson->next = head;
             head = newPerson;
         }
-        std::cout << "Person added successfully.\n";
+        
     }
 
 void PersonLinkedList::registrationProcess()
     {
-        std::string* ptr = registration();
+        std::string* ptr = registration();  
         std::cout << typeid(ptr[2]).name();
-        this->addPerson(ptr[0], ptr[1], stoi(ptr[2]), ptr[3], ptr[4], ptr[5], ptr[6], ptr[7], 0.0);
+        this->addPerson(ptr[0], ptr[1], stoi(ptr[2]), ptr[3], ptr[4], ptr[5], ptr[6], ptr[7], 5000.0);
+
+        
         std::cout << "\n" << "Your Details " << "\n";
         std::cout << "First Name : " << ptr[0] << "\n";
         std::cout << "Last Name : " << ptr[1] << "\n";
@@ -52,13 +65,16 @@ void PersonLinkedList::registrationProcess()
         std::cout << "Account Number : " << ptr[5] << "\n";
         std::cout << "Username : " << ptr[6] << "\n" << "_________________________________" << "\n";
         std::cout << "Login your account from here\n";
-        this->saveToCSV("D:/DSA_project/database/list2.csv");
+        this->saveToCSV(database_path);
+        this->~PersonLinkedList();
+        this->loadCsvData();
+        this->encryptAndSaveToCSV();
         loginPage(0);
     }
 
 void PersonLinkedList::deletePerson() {
         if (head == nullptr) {
-            std::cout << "List is empty. Cannot delete.\n";
+            std::cout <<RED<< "List is empty. Cannot delete."<<RESET<<std::endl;
             return;
         }
 
@@ -70,8 +86,11 @@ void PersonLinkedList::deletePerson() {
             }
             
             delete temp;
-            std::cout << "Person deleted successfully.\n";
-            this->saveToCSV("D:/DSA_project/database/list2.csv");
+            std::cout <<GREEN<< "Person deleted successfully."<<RESET<<std::endl;
+            this->saveToCSV(database_path);
+            this->~PersonLinkedList();
+            this->loadCsvData();
+            this->encryptAndSaveToCSV();
             return;
         }
 
@@ -81,14 +100,17 @@ void PersonLinkedList::deletePerson() {
         }
 
         if (current->next == nullptr) {
-            std::cout << "Person not found.\n";
+            std::cout <<RED<< "Person not found."<<RESET<<std::endl;
         } else {
             Person* temp = current->next;
             current->next = current->next->next;
             delete temp;
-            std::cout << "Person deleted successfully.\n";
+            std::cout <<RED<< "Person deleted successfully."<<RESET<<std::endl;
         }
-        this->saveToCSV("D:/DSA_project/database/list2.csv");
+        this->saveToCSV(database_path);
+        this->~PersonLinkedList();
+        this->loadCsvData();
+        this->encryptAndSaveToCSV();
     }
 
 void PersonLinkedList::changePersonProperties(const std::string& property, const std::string& value) {
@@ -98,7 +120,7 @@ void PersonLinkedList::changePersonProperties(const std::string& property, const
         }
 
         if (current == nullptr) {
-            std::cout << "Person not found.\n";
+            std::cout <<RED<< "Person not found."<<RESET<<std::endl;
         } else {
             if (property == "fname") {
                 current->fname = value;
@@ -115,15 +137,18 @@ void PersonLinkedList::changePersonProperties(const std::string& property, const
             } else if (property == "password") {
                 current->password = value;
             } else {
-                std::cout << "Invalid property.\n";
+                std::cout <<RED<< "Invalid property."<<RESET<<std::endl;
                 return;
             }
-
-            std::cout << "Person properties changed successfully.\n";
+            std::cout <<GREEN<< "Person properties changed successfully."<<RESET<<std::endl;
+            this->saveToCSV(database_path);
+            this->~PersonLinkedList();
+            this->loadCsvData();
+            this->encryptAndSaveToCSV();
         }
     }
 
-void PersonLinkedList::showPersonProperties() {
+void PersonLinkedList::showAccountBalance() {
         Person* current = head;
         while (current != nullptr && current->username != current_User) {
             current = current->next;
@@ -132,14 +157,7 @@ void PersonLinkedList::showPersonProperties() {
         if (current == nullptr) {
             std::cout << "Person not found.\n";
         } else {
-            std::cout << "Username: " << current->username << "\n";
-            std::cout << "First Name: " << current->fname << "\n";
-            std::cout << "Last Name: " << current->lname << "\n";
-            std::cout << "Age: " << current->age << "\n";
-            std::cout << "ID: " << current->id << "\n";
-            std::cout << "Address: " << current->address << "\n";
-            std::cout << "Account Number: " << current->accountnumber << "\n";
-            std::cout << "Password: " << current->password << "\n";
+            std::cout << "\nAccount balance is : Rs." <<GREEN<< current->amount << RESET<<std::endl;
         }
     }
 
@@ -155,18 +173,18 @@ void PersonLinkedList::saveToCSV(const std::string& filename) {
             outputFile << current->fname << "," << current->lname << ","
                        << current->age << "," << current->id << ","
                        << current->address << "," << current->accountnumber << ","
-                       << current->username << "," << current->password << "," << current->amount << "," << "\n";
+                       << current->username << "," << current->password << "," << std::to_string(current->amount) << "," << "\n";
             current = current->next;
         }
 
-        std::cout << "Data saved to " << filename << " successfully.\n";
+       
     }
 
 bool PersonLinkedList::findUsername(const std::string& username){
     Person* current = head;
     while (current != nullptr) {
         if (current->username == username) {
-            return true; // Username found
+            return true; 
         }
         current = current->next;
     }
@@ -178,11 +196,11 @@ bool PersonLinkedList::verifyPassword(std::string password, std::string username
     while (current != nullptr) {
         if (current->username == username && current->password == password) {
             current_User = username;
-            return true; // Username and password match found
+            return true; 
         }
         current = current->next;
     }
-    return false; // Username and password match not found
+    return false; 
 }
 
 void PersonLinkedList::loadCsvData()
@@ -203,23 +221,85 @@ void PersonLinkedList::loadCsvData()
         getline(ss, fname, ',');
         getline(ss, lname, ',');
         ss >> age;
-        ss.ignore(); // Ignore the comma
+        ss.ignore(); 
         getline(ss, id, ',');
         getline(ss, address, ',');
         getline(ss, username, ',');
         getline(ss, accountnumber, ',');
         getline(ss, password, ',');
         ss >> amount_1;
-        ss.ignore(); // Ignore the comma
-
-        // Add person to the linked list
+        ss.ignore(); 
+        
         this->addPerson(fname, lname, age, id, address, username, accountnumber, password, amount_1);
     }
 }
 
-//  int main() {
-//     PersonLinkedList p1;
-//     p1.loadCsvData();
-//     p1.addPerson("sp","ss",10,"ss","ss","ss","ss", "ss");
-//     p1.saveToCSV("data1.csv");
-//  }
+int PersonLinkedList::updateBalance(const std::string toAccountNum, float balance)
+{
+    Person* current = head;
+    if (current == nullptr) return 2;
+    std::string acc;
+
+    if(balance == 0.0)
+    {
+        //looping for find if user entered their own account number. if return 1.
+        while (current != nullptr) {
+        if (current->username == current_User) {
+            acc = current->accountnumber;
+        }
+        current = current->next;
+        }
+        if(acc == toAccountNum){
+        return 1;
+        }
+
+        //looping for find if user entered acc number is in our database. if not return 2.
+        current = head;
+        int result = 0;
+        while(current != nullptr) {
+        if (current->accountnumber == toAccountNum) {
+            result = 1;
+        }
+        current = current->next;
+        }
+        if(result == 0){return 2;}
+
+    }
+
+    current = head;
+    while(current != nullptr)
+    {  
+        if(current->accountnumber == toAccountNum)
+        {
+            current->amount += balance;
+            Person* current1 = head;
+            while(current1 != nullptr)
+            {
+                if(current1->username == current_User)
+                {
+                    current1->amount -= balance;
+                    
+                    if(current1->amount < MINIMUM_AMOUNT)
+                    {
+                        current1->amount += balance;
+                        current->amount -= balance;
+                        return 3;
+                    }
+                    if(balance != 0.0)
+                    {
+                        this->saveToCSV(database_path);
+                        this->~PersonLinkedList();
+                        this->loadCsvData();
+                        this->encryptAndSaveToCSV();
+                        return 4;   
+                    }
+                }
+                current1 = current1->next;
+            }
+        }
+        current = current->next;
+    }
+    return -1;
+    
+}
+

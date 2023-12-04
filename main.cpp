@@ -1,10 +1,8 @@
-#include "home.h" 
-
-
-using namespace std;
+#include "home.h"
+#include "API_v2.h"
 
 int main()
 {
     home();
-    
+   
 }

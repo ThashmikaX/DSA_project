@@ -8,8 +8,8 @@ struct Person {
     int age;
     std::string id;
     std::string address;
-    std::string username;
     std::string accountnumber;
+    std::string username;
     std::string password;
     float amount;
     Person* next;
@@ -23,33 +23,36 @@ public:
     // Constructor
     PersonLinkedList();
 
-    // Destructor to free memory when the program ends
+    // Destructor 
     ~PersonLinkedList();
 
-    // Function to add a new person to the list
+    
     void addPerson(const std::string& fname, const std::string& lname, int age,
                     const std::string& id, const std::string& address, const std::string& username,
                     const std::string& accountnumber, const std::string& password, float person_amount_1);
 
     void registrationProcess();
 
-    // Function to delete a person from the list
+    
     void deletePerson();
 
-    // Function to change person properties
+    
     void changePersonProperties(const std::string& property, const std::string& value);
 
-    // Function to display person properties
-    void showPersonProperties();
+    
+    void showAccountBalance();
 
-    // Function to save the updated data to a CSV file
+    void loadCsvData();
+    
     void saveToCSV(const std::string& filename);
 
     bool findUsername(const std::string& username);
     bool verifyPassword(std::string password1, std::string username1);
-    void loadCsvData();
 
+    int updateBalance(const std::string toAccountNum, float balance);
 
+    void encryptAndSaveToCSV();
+    void decryptAndSaveToCSV();
 };
 
 
