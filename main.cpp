@@ -4,9 +4,5 @@
 int main()
 {
     home();
-    // PersonLinkedList p1;
-    // p1.encryptAndSaveToCSV();
-    // p1.encryptAndSaveToCSV();
-    // p1.decryptAndSaveToCSV();
-    // p1.decryptAndSaveToCSV();
+   
 }

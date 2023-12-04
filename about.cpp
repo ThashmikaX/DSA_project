@@ -48,9 +48,7 @@ void aboutPage() {
             }
             }
 }
-    // Add information about your team, project, etc.
-// }
 
-// int main(){
-//     aboutPage();
-// }
+       
+   
+

@@ -23,27 +23,27 @@ public:
     // Constructor
     PersonLinkedList();
 
-    // Destructor to free memory when the program ends
+    // Destructor 
     ~PersonLinkedList();
 
-    // Function to add a new person to the list
+    
     void addPerson(const std::string& fname, const std::string& lname, int age,
                     const std::string& id, const std::string& address, const std::string& username,
                     const std::string& accountnumber, const std::string& password, float person_amount_1);
 
     void registrationProcess();
 
-    // Function to delete a person from the list
+    
     void deletePerson();
 
-    // Function to change person properties
+    
     void changePersonProperties(const std::string& property, const std::string& value);
 
-    // Function to display person properties
+    
     void showAccountBalance();
 
     void loadCsvData();
-    // Function to save the updated data to a CSV file
+    
     void saveToCSV(const std::string& filename);
 
     bool findUsername(const std::string& username);

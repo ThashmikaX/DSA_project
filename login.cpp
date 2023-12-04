@@ -6,12 +6,12 @@
 #include "colour.cpp"
 
 #include <iostream>
-#include <limits> // for numeric_limits
-#include <string> // for std::string
+#include <limits> 
+#include <string> 
 
 PersonLinkedList personList1;
 
-// Generalized login function
+
 void loginPage(int y) {
     std::string username, password;
 
@@ -53,14 +53,8 @@ void loginPage(int y) {
         menu();
     } else if (y == 1) {
         std::cout << "_______________________________\n";
-        // Additional logic if needed after account deletion
+        
     }
 }
 
 
-// int main()
-// {
-//     //cout << getCurrentUser();
-//     //loginPage(0);
-//     cout << "test";
-// }

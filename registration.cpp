@@ -17,13 +17,12 @@ std::string * registration()
         std::cin >> person[1];
         int integerValue;
         while (true) {
-        // Prompt the user for input
         std::cout << "Age: ";
         std::getline(std::cin, person[2]);
-        // Attempt to convert the input to an integer
+        // convert the string to an integer
         try {
             integerValue = std::stoi(person[2]);
-            break;  // If successful, exit the loop
+            break;  
         } catch (const std::invalid_argument& e) {
             std::cerr <<RED<< "Invalid input. Please enter a valid integer." <<RESET<< std::endl;
         } catch (const std::out_of_range& e) {

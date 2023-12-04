@@ -5,8 +5,8 @@
 #include "colour.cpp"
 
 #include <iostream>
-#include <limits> // for numeric_limits
-#include <string> // for string
+#include <limits> 
+#include <string> 
 
 using namespace std;
 
