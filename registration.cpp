@@ -15,20 +15,7 @@ std::string * registration()
         std::cin >> person[0];
         std::cout << "Last_Name : ";
         std::cin >> person[1];
-        int integerValue;
-        while (true) {
         std::cout << "Age: ";
-        std::getline(std::cin, person[2]);
-        // convert the string to an integer
-        try {
-            integerValue = std::stoi(person[2]);
-            break;  
-        } catch (const std::invalid_argument& e) {
-            std::cerr <<RED<< "Invalid input. Please enter a valid integer." <<RESET<< std::endl;
-        } catch (const std::out_of_range& e) {
-            std::cerr <<RED <<"Input out of range. Please enter a smaller integer." << RESET<<std::endl;
-            }
-        }
         std::cout << "NIC/Passport No : ";
         std::cin >> person[3];
         std::cout << "Address : ";

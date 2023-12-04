@@ -17,7 +17,7 @@ void transferPage(){
     cout <<"To : ";
     cin >> x;
     if(1==personList1.updateBalance(x,0.0)){
-        cout << "You Enterd your own account number\n";
+        cout << RED <<"You Enterd your own account number"<<RESET<<endl;
         y= true;
 
     }
@@ -33,7 +33,7 @@ void transferPage(){
         int check = personList1.updateBalance(x,amount);
         if(3==check){
             int z;
-            cout<<RED<< "Account balance is less than zero"<<RESET<<endl;
+            cout<<RED<< "Account balance is not enough"<<RESET<<endl;
             cout << "------------------------------------------------\n";
             while(true){
             cout << "\nDo you continue?\n";
@@ -45,7 +45,12 @@ void transferPage(){
                 if(z==1){
                     menu();
 
-                }else{
+                }
+                else if(z==2)
+                {
+                    break;
+                }
+                else{
                     break;
                     
                 }

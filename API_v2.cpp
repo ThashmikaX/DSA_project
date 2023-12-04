@@ -157,7 +157,7 @@ void PersonLinkedList::showAccountBalance() {
         if (current == nullptr) {
             std::cout << "Person not found.\n";
         } else {
-            std::cout << "\nAccount balance is : Rs." <<RED<< current->amount << RESET<<std::endl;
+            std::cout << "\nAccount balance is : Rs." <<GREEN<< current->amount << RESET<<std::endl;
         }
     }
 
@@ -299,6 +299,7 @@ int PersonLinkedList::updateBalance(const std::string toAccountNum, float balanc
         }
         current = current->next;
     }
+    return -1;
     
 }
 
