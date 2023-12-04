@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// Function to encrypt the data and save it to a CSV file
+
 void PersonLinkedList::encryptAndSaveToCSV() {
     ofstream outputFile("D:/DSA_project/database/list2.csv");
     if (!outputFile.is_open()) {
@@ -16,20 +16,17 @@ void PersonLinkedList::encryptAndSaveToCSV() {
 
     Person* current = head;
     while (current != nullptr) {
-        // Encrypting sensitive information (you can use a more secure encryption algorithm)
+        
         string encryptedFname = "";
         for (char c : current->fname) {
-            encryptedFname += static_cast<char>(c + 1); // Simple encryption: shift each character by 1
+            encryptedFname += static_cast<char>(c + 1); 
         }
         string encryptedLname = "";
         for (char c : current->lname) {
             encryptedLname += static_cast<char>(c + 1);
         }
 
-        // string encryptedId = "";
-        // for (char c : current->age) {
-        //     encryptedId += static_cast<char>(c + 1);
-        // }
+      
         
         string encryptedId = "";
         for (char c : current->id) {
@@ -61,10 +58,10 @@ void PersonLinkedList::encryptAndSaveToCSV() {
         current = current->next;
     }
 
-    cout << "Data encrypted and saved to " << "D:/DSA_project/database/list2.csv" << " successfully.\n";
+    
 }
 
-// Function to decrypt the data and save it to a CSV file
+
 void PersonLinkedList::decryptAndSaveToCSV() {
     ofstream outputFile("D:/DSA_project/database/list2.csv");
     if (!outputFile.is_open()) {
@@ -74,10 +71,10 @@ void PersonLinkedList::decryptAndSaveToCSV() {
 
     Person* current = head;
     while (current != nullptr) {
-        // Decrypting sensitive information (you can use a more secure decryption algorithm)
+        
         string decryptedFname = "";
         for (char c : current->fname) {
-            decryptedFname += static_cast<char>(c - 1); // Simple decryption: shift each character by 1
+            decryptedFname += static_cast<char>(c - 1); 
         }
 
         string decryptedLname = "";
@@ -116,12 +113,6 @@ void PersonLinkedList::decryptAndSaveToCSV() {
         current = current->next;
     }
 
-    cout << "Data decrypted and saved to " << "D:/DSA_project/database/list2.csv"  << " successfully.\n";
+    
 }
 
-// int main()
-// {
-//     PersonLinkedList p1;
-//     p1.encryptAndSaveToCSV(database_path);
-
-// }

@@ -7,7 +7,7 @@ using namespace std;
 
 void aboutPage() {
     cout << "-------Welcome to Nexgen Finance, where your financial well-being is our top priority.------\n";
-    //cout << "\n--------------------------------------------------------------------------------------------\n\n\n";
+    
     cout << "\033[1m" << "-------------------------Our Vision--------------------------------------------------------\n" << "\033[0m" << endl;
     cout << "At Nexgen Finance, we are committed to providing you with the highest level of banking\n"
             "services while maintaining the utmost integrity and transparency. Our mission is to\n"
@@ -29,7 +29,7 @@ void aboutPage() {
             "                    Matara +94115209335\n\n\n"
             "Thank you for choosing NexGen Finance. We look forward to being your trusted financial \n"
             "partner"<<endl;
-            //cout << "------------------------------------------------------------------------------------------------------\n\n\n";
+            
              while(true){
             cout << "\nDo you continue?\n";
             cout <<"1.Yes\n";
