@@ -16,6 +16,7 @@ std::string * registration()
         std::cout << "Last_Name : ";
         std::cin >> person[1];
         std::cout << "Age: ";
+        std::cin >> person[2];
         std::cout << "NIC/Passport No : ";
         std::cin >> person[3];
         std::cout << "Address : ";

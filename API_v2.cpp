@@ -52,11 +52,10 @@ void PersonLinkedList::addPerson(const std::string& fname, const std::string& ln
 void PersonLinkedList::registrationProcess()
     {
         std::string* ptr = registration();  
-        std::cout << typeid(ptr[2]).name();
         this->addPerson(ptr[0], ptr[1], stoi(ptr[2]), ptr[3], ptr[4], ptr[5], ptr[6], ptr[7], 5000.0);
 
         
-        std::cout << "\n" << "Your Details " << "\n";
+        std::cout << "\n" << "\nYour Details " << "\n";
         std::cout << "First Name : " << ptr[0] << "\n";
         std::cout << "Last Name : " << ptr[1] << "\n";
         std::cout << "Age : " << ptr[2] << "\n";
