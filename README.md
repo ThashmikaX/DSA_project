@@ -14,11 +14,11 @@ for conducting transactions focusing on security, integrity, and performance.
 
 
 ## Key Features
-•  User registration and authentication.
-• Transaction processing and management (transfers, payments, etc.).
-• Account management (account creation, balance tracking).
-• Robust security measures, including data encryption.
-• Role-based access control and authorization.
-• Comprehensive activity logging and audit trails.
-• A user-friendly command-line interface.
+* User registration and authentication.
+* Transaction processing and management (transfers, payments, etc.).
+* Account management (account creation, balance tracking).
+* Robust security measures, including data encryption.
+* Role-based access control and authorization.
+* Comprehensive activity logging and audit trails.
+* A user-friendly command-line interface.
 
