@@ -22,3 +22,6 @@ for conducting transactions focusing on security, integrity, and performance.
 * Comprehensive activity logging and audit trails.
 * A user-friendly command-line interface.
 
+## API
+We use version 2 of the API. the API used to communicate between the linked list(our main data structure) and the local CSV file.
+
