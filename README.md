@@ -1,4 +1,4 @@
-# DSA_project
+# Security-First Command-Line Transaction Portal
 
 1. [Introduction](https://github.com/ThashmikaX/DSA_project#introduction)
 2. [Key Features](https://github.com/ThashmikaX/DSA_project#Key-Features)
