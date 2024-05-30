@@ -15,6 +15,7 @@ bool securityStatus = 1;
 std::string current_User = "", database_path = "D:/DSA_project/database/list2.csv";
 PersonLinkedList::PersonLinkedList() : head(nullptr) {
     this->loadCsvData();
+    //this->encryptAndSaveToCSV();
     if(securityStatus == 1)
     {
         this->decryptAndSaveToCSV();
